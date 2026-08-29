@@ -1,0 +1,3967 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="김지나 PR·마케팅 포트폴리오">
+  <title>김지나 포트폴리오</title>
+  <style>
+    :root {
+      --navy: #071a33;
+      --navy-soft: #0d2748;
+      --blue: #2563a8;
+      --ink: #10243a;
+      --muted: #687d91;
+      --line: #d9e1e8;
+      --paper: #f4f7fa;
+      --white: #ffffff;
+      --topbar: 76px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+      word-break: keep-all;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    section { scroll-margin-top: var(--topbar); }
+
+    .skip-link {
+      position: fixed;
+      top: -60px;
+      left: 16px;
+      z-index: 200;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      transition: top .2s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 150;
+      height: var(--topbar);
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      background: rgba(7,26,51,.96);
+      color: #fff;
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      display: flex;
+      width: min(100%, 1600px);
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 clamp(28px, 4.5vw, 72px);
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+    }
+    .top-brand {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: baseline;
+      gap: 13px;
+    }
+    .top-brand strong { font-size: 17px; letter-spacing: .04em; }
+    .top-brand small { color: #91a8bd; font-size: 8px; letter-spacing: .09em; }
+    .top-nav { display: flex; align-items: center; gap: 5px; }
+    .nav-link,
+    .work-trigger {
+      position: relative;
+      display: flex;
+      min-height: 42px;
+      padding: 0 14px;
+      align-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: #a8b9c9;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active,
+    .work-trigger:hover,
+    .work-trigger.active,
+    .work-menu.open .work-trigger { background: rgba(255,255,255,.1); color: #fff; }
+    .contact-nav { border: 1px solid rgba(255,255,255,.24); color: #fff; }
+    .work-menu { position: relative; }
+    .work-trigger { gap: 7px; }
+    .work-trigger span { font-size: 11px; transition: transform .2s ease; }
+    .work-menu.open .work-trigger span { transform: rotate(180deg); }
+    .work-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      display: grid;
+      width: min(620px, 76vw);
+      padding: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      border: 1px solid #d6e0e9;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 24px 60px rgba(0,0,0,.2);
+      color: var(--ink);
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, -8px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+    .work-menu.open .work-dropdown { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+    .dropdown-link {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      min-height: 48px;
+      padding: 10px 12px;
+      align-items: center;
+      border-radius: 9px;
+      color: #536b81;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+      transition: background .18s ease, color .18s ease;
+    }
+    .dropdown-link span { color: var(--blue); font-size: 9px; }
+    .dropdown-link:hover,
+    .dropdown-link.active { background: #edf3f8; color: var(--navy); }
+    .nav-toggle { display: none; }
+    .page { padding-left: 0; }
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: calc(var(--topbar) + 34px) clamp(42px, 7vw, 112px) 38px;
+      overflow: hidden;
+      background: var(--navy);
+      color: #fff;
+    }
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 50%;
+      content: "";
+    }
+    .hero::before {
+      top: -35vw;
+      right: -24vw;
+      width: 72vw;
+      height: 72vw;
+    }
+    .hero::after {
+      right: -6vw;
+      bottom: -32vw;
+      width: 54vw;
+      height: 54vw;
+    }
+    .hero-top,
+    .hero-bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      color: #9db0c2;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+    .hero-bottom {
+      padding: 16px 0 0;
+      border-top: 1px solid rgba(255,255,255,.2);
+      border-bottom: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      margin: auto 0;
+      padding: 9vh 0;
+    }
+    .eyebrow {
+      display: block;
+      color: #92abc1;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
+    .hero h1 {
+      max-width: 1050px;
+      margin: 26px 0 28px;
+      font-size: clamp(54px, 7.2vw, 116px);
+      line-height: .98;
+      letter-spacing: -.075em;
+    }
+    .hero h1 span { color: #9ebad4; }
+    .hero-copy {
+      max-width: 620px;
+      margin: 0;
+      color: #a9bacb;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 34px;
+      padding: 13px 18px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      transition: background .2s ease, color .2s ease;
+    }
+    .hero-link:hover { background: #fff; color: var(--navy); }
+
+    .section {
+      padding: clamp(82px, 10vw, 150px) clamp(32px, 6.5vw, 105px);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .section.white { background: #fff; }
+    .section.dark {
+      border-color: rgba(255,255,255,.1);
+      background: var(--navy-soft);
+      color: #fff;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+    .section-no {
+      padding-top: 9px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .dark .section-no { color: #91abc4; }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(37px, 5vw, 70px);
+      line-height: 1.08;
+      letter-spacing: -.055em;
+    }
+    .section-head p {
+      max-width: 650px;
+      margin: 19px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .dark .section-head p { color: #9eb1c4; }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(50px, 7vw, 110px);
+      align-items: start;
+    }
+    .intro-copy h2 {
+      margin: 0;
+      font-size: clamp(42px, 5.5vw, 78px);
+      line-height: 1.08;
+      letter-spacing: -.06em;
+    }
+    .intro-copy p {
+      margin: 25px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .career-list { border-top: 1px solid var(--line); }
+    .career-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 22px;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .career-item time {
+      color: #7b8fa1;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .career-item strong {
+      display: block;
+      font-size: 17px;
+    }
+    .career-item p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 50px rgba(16,36,58,.09);
+    }
+    .project-card.wide { grid-column: 1 / -1; }
+    .series-gallery {
+      display: grid;
+      padding: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      background: #e9eef3;
+    }
+    .series-group {
+      overflow: hidden;
+      border: 1px solid #d2dce5;
+      background: #fff;
+    }
+    .series-group.full { grid-column: 1 / -1; }
+    .series-head {
+      display: grid;
+      min-height: 68px;
+      padding: 14px 16px;
+      grid-template-columns: 1fr auto;
+      gap: 5px 12px;
+      align-items: center;
+      border-bottom: 1px solid #e0e6eb;
+    }
+    .series-head span {
+      grid-column: 1 / -1;
+      color: var(--blue);
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .09em;
+    }
+    .series-head strong {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .series-head small {
+      color: #8a9cae;
+      font-size: 9px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .series-images {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: #dce4eb;
+    }
+    .series-images.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .series-images.web { grid-template-columns: 1.45fr .78fr .78fr; }
+    .series-images.single { grid-template-columns: 1fr; }
+    .series-image {
+      display: flex;
+      min-height: 230px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #fff;
+    }
+    .series-group.full .series-image { min-height: 285px; }
+    .series-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 470px;
+      object-fit: contain;
+      transition: transform .35s ease;
+    }
+    .series-image:hover img { transform: scale(1.018); }
+    .portfolio-project .project-info { min-height: 142px; }
+    .placeholder {
+      position: relative;
+      display: grid;
+      min-height: 310px;
+      place-items: center;
+      overflow: hidden;
+      background: #e9eef3;
+      color: #8b9dad;
+    }
+    .wide .placeholder { min-height: 430px; }
+    .placeholder::before {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(7,26,51,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7,26,51,.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+      content: "";
+    }
+    .placeholder::after {
+      position: absolute;
+      width: 42%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(7,26,51,.12);
+      border-radius: 50%;
+      content: "";
+    }
+    .placeholder-code {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(26px, 4vw, 54px);
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+    .placeholder small {
+      position: absolute;
+      right: 19px;
+      bottom: 17px;
+      z-index: 1;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    .project-info {
+      position: relative;
+      min-height: 126px;
+      padding: 23px 54px 24px 24px;
+    }
+    .project-info span {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+    }
+    .project-info h3 {
+      margin: 10px 0 0;
+      font-size: 19px;
+      line-height: 1.42;
+      letter-spacing: -.035em;
+    }
+    .project-info p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .project-arrow {
+      position: absolute;
+      right: 24px;
+      top: 25px;
+      color: #8ca0b2;
+    }
+    .dark .project-card {
+      border-color: rgba(255,255,255,.14);
+      background: #102d50;
+    }
+    .dark .placeholder {
+      background: #17395e;
+      color: #8ea8c0;
+    }
+    .dark .placeholder::before {
+      background-image:
+        linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+    }
+    .dark .project-info span { color: #9dbbd6; }
+    .dark .project-info p { color: #92a9be; }
+    .dark .series-gallery { background: #17395e; }
+    .dark .series-group { border-color: rgba(255,255,255,.14); }
+
+    .linkedin-block {
+      margin-top: 76px;
+      padding-top: 65px;
+      border-top: 1px solid rgba(255,255,255,.16);
+    }
+    .linkedin-title {
+      display: grid;
+      grid-template-columns: 1fr .75fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+    .linkedin-title h3 {
+      margin: 13px 0 0;
+      font-size: clamp(28px, 4vw, 54px);
+      line-height: 1.13;
+      letter-spacing: -.055em;
+    }
+    .linkedin-title p {
+      margin: 0;
+      color: #9db0c2;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .linkedin-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .linkedin-slot {
+      position: relative;
+      display: grid;
+      aspect-ratio: 1;
+      place-items: center;
+      overflow: hidden;
+      background: #17395e;
+      color: #89a4bc;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .linkedin-slot:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .linkedin-slot::before {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      content: "";
+    }
+    .linkedin-slot span { position: relative; z-index: 1; }
+    .gallery-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 18px;
+      padding: 18px 21px;
+      border: 1px solid rgba(255,255,255,.15);
+      color: #a7b7c6;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .gallery-note strong { color: #fff; }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .skill {
+      min-height: 130px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .skill span {
+      display: block;
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+    }
+    .skill strong {
+      display: block;
+      margin-top: 30px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .contact {
+      position: relative;
+      min-height: 78vh;
+      padding: clamp(82px, 10vw, 150px) clamp(32px, 6.5vw, 105px) 44px;
+      overflow: hidden;
+      background: var(--navy);
+      color: #fff;
+    }
+    .contact::after {
+      position: absolute;
+      right: -18vw;
+      bottom: -29vw;
+      width: 60vw;
+      height: 60vw;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      content: "";
+    }
+    .contact h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 22px 0 0;
+      font-size: clamp(48px, 7vw, 102px);
+      line-height: 1.02;
+      letter-spacing: -.07em;
+    }
+    .contact-links {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 42px;
+    }
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 225px;
+      padding: 16px 19px;
+      border: 1px solid rgba(255,255,255,.26);
+      color: #fff;
+      font-size: 12px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .contact-links a:hover { background: #fff; color: var(--navy); }
+    .footer {
+      position: absolute;
+      right: clamp(32px, 6.5vw, 105px);
+      bottom: 34px;
+      left: clamp(32px, 6.5vw, 105px);
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.2);
+      color: #879caf;
+      font-size: 9px;
+      letter-spacing: .06em;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 1050px) {
+      .section { padding-right: 44px; padding-left: 44px; }
+      .hero { padding-right: 44px; padding-left: 44px; }
+      .linkedin-grid { grid-template-columns: repeat(3, 1fr); }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .topbar-inner { padding: 0 22px; }
+      .top-brand small { display: none; }
+      .nav-toggle {
+        display: grid;
+        width: 44px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid rgba(255,255,255,.24);
+        border-radius: 999px;
+        background: transparent;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .nav-toggle::before { content: "메뉴"; }
+      .topbar.open .nav-toggle::before { content: "닫기"; }
+      .top-nav {
+        position: fixed;
+        top: var(--topbar);
+        right: 0;
+        left: 0;
+        display: flex;
+        max-height: calc(100vh - var(--topbar));
+        padding: 15px 22px 24px;
+        flex-direction: column;
+        align-items: stretch;
+        overflow-y: auto;
+        border-bottom: 1px solid rgba(255,255,255,.14);
+        background: rgba(7,26,51,.985);
+        box-shadow: 0 24px 50px rgba(0,0,0,.25);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+      }
+      .topbar.open .top-nav { opacity: 1; visibility: visible; transform: none; }
+      .nav-link,
+      .work-trigger { width: 100%; min-height: 48px; justify-content: space-between; border-radius: 8px; }
+      .contact-nav { margin-top: 5px; }
+      .work-dropdown {
+        position: static;
+        display: grid;
+        width: 100%;
+        max-height: 0;
+        padding: 0;
+        grid-template-columns: 1fr;
+        gap: 3px;
+        overflow: hidden;
+        border: 0;
+        border-radius: 9px;
+        background: rgba(255,255,255,.06);
+        box-shadow: none;
+        color: #fff;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: max-height .25s ease, padding .25s ease;
+      }
+      .work-menu.open .work-dropdown { max-height: 460px; padding: 7px; transform: none; }
+      .dropdown-link { color: #b8c8d6; }
+      .dropdown-link:hover,
+      .dropdown-link.active { background: rgba(255,255,255,.09); color: #fff; }
+      .dropdown-link span { color: #77aee3; }
+      .hero { min-height: 88vh; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card.wide { grid-column: auto; }
+      .series-gallery { grid-template-columns: 1fr; }
+      .series-group.full { grid-column: auto; }
+      .wide .placeholder { min-height: 330px; }
+      .linkedin-title { grid-template-columns: 1fr; }
+      .linkedin-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-head { grid-template-columns: 42px 1fr; gap: 10px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero,
+      .section,
+      .contact { padding-right: 22px; padding-left: 22px; }
+      .hero { min-height: 760px; padding-top: calc(var(--topbar) + 24px); padding-bottom: 28px; }
+      .hero-top span:last-child { display: none; }
+      .hero h1 { font-size: clamp(45px, 15vw, 70px); }
+      .hero-copy { font-size: 14px; }
+      .section { padding-top: 88px; padding-bottom: 88px; }
+      .section-head { grid-template-columns: 1fr; }
+      .section-no { padding-top: 0; }
+      .section-head h2 { font-size: 40px; }
+      .career-item { grid-template-columns: 1fr; gap: 9px; }
+      .placeholder,
+      .wide .placeholder { min-height: 260px; }
+      .project-info h3 { font-size: 17px; }
+      .series-gallery { padding: 10px; gap: 10px; }
+      .series-images.web,
+      .series-images.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .series-images.web .series-image:first-child,
+      .series-images.three .series-image:first-child { grid-column: 1 / -1; }
+      .series-image,
+      .series-group.full .series-image { min-height: 170px; }
+      .linkedin-grid { gap: 7px; }
+      .gallery-note { display: block; }
+      .gallery-note span { display: block; margin-top: 7px; }
+      .skills { grid-template-columns: 1fr; }
+      .contact { min-height: 720px; }
+      .contact h2 { font-size: 52px; }
+      .contact-links { flex-direction: column; }
+      .contact-links a { width: 100%; }
+      .footer { right: 22px; left: 22px; display: block; line-height: 1.8; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Career timeline */
+    .career-timeline {
+      position: relative;
+      padding-left: 38px;
+    }
+    .career-timeline::before {
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 7px;
+      width: 2px;
+      border-radius: 2px;
+      background: #bfd0e0;
+      content: "";
+    }
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 138px 1fr;
+      gap: 7px 22px;
+      padding: 0 0 34px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      position: absolute;
+      top: 2px;
+      left: -38px;
+      width: 16px;
+      height: 16px;
+      border: 4px solid var(--blue);
+      border-radius: 50%;
+      background: #fff;
+      content: "";
+    }
+    .timeline-item time {
+      grid-row: 1 / 3;
+      padding-top: 2px;
+      color: #75899c;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .timeline-item strong {
+      font-size: 17px;
+      line-height: 1.3;
+    }
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* Collapsible work categories */
+    .section.work-section { padding: 0; }
+    .work-accordion > summary {
+      position: relative;
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) minmax(230px, .55fr) 94px;
+      gap: 24px;
+      align-items: center;
+      min-height: 176px;
+      padding: 48px clamp(32px, 6.5vw, 105px);
+      cursor: pointer;
+      list-style: none;
+    }
+    .work-accordion > summary::-webkit-details-marker { display: none; }
+    .accordion-no {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .accordion-title h2 {
+      margin: 0;
+      font-size: clamp(34px, 4.2vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -.055em;
+    }
+    .accordion-title span {
+      display: block;
+      margin-top: 8px;
+      color: #7e91a3;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .09em;
+    }
+    .accordion-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .accordion-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      min-height: 39px;
+      border: 1px solid #b9c7d4;
+      border-radius: 999px;
+      color: #607489;
+      font-size: 10px;
+      font-weight: 900;
+    }
+    .accordion-toggle::after { content: "펼치기 +"; }
+    .work-accordion[open] .accordion-toggle::after { content: "접기 −"; }
+    .work-accordion[open] > summary { border-bottom: 1px solid var(--line); }
+    .accordion-panel {
+      padding: 48px clamp(32px, 6.5vw, 105px) clamp(82px, 9vw, 130px);
+    }
+    .work-section.dark .accordion-no,
+    .work-section.dark .accordion-title span { color: #98b2ca; }
+    .work-section.dark .accordion-copy { color: #9eb1c4; }
+    .work-section.dark .accordion-toggle {
+      border-color: rgba(255,255,255,.25);
+      color: #c0cfdd;
+    }
+    .work-section.dark .work-accordion[open] > summary { border-color: rgba(255,255,255,.15); }
+
+    .document-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+    .document-card {
+      min-height: 155px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .document-card span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .document-card h3 {
+      margin: 19px 0 8px;
+      font-size: 17px;
+      line-height: 1.4;
+      letter-spacing: -.03em;
+    }
+    .document-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .contact-links a {
+      justify-content: space-between;
+      min-width: 240px;
+    }
+    .contact-links a span { font-weight: 900; }
+    .contact-links a strong { font-size: 11px; }
+
+    @media (max-width: 920px) {
+      .work-accordion > summary {
+        grid-template-columns: 44px minmax(0, 1fr) 94px;
+        gap: 15px;
+      }
+      .accordion-copy { grid-column: 2 / -1; max-width: 620px; }
+      .accordion-toggle { grid-column: 3; grid-row: 1; }
+    }
+
+    @media (max-width: 620px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 6px; }
+      .timeline-item time { grid-row: auto; }
+      .work-accordion > summary {
+        grid-template-columns: 1fr auto;
+        min-height: 0;
+        padding: 31px 22px;
+      }
+      .accordion-no { grid-column: 1; }
+      .accordion-title { grid-column: 1 / -1; }
+      .accordion-title h2 { font-size: 34px; }
+      .accordion-copy { grid-column: 1 / -1; }
+      .accordion-toggle { grid-column: 2; grid-row: 1; min-width: 78px; }
+      .accordion-panel { padding: 28px 22px 72px; }
+      .document-grid { grid-template-columns: 1fr; }
+      .contact-links a { min-width: 0; }
+    }
+
+    /* Toss-inspired visual refresh */
+    :root {
+      --navy: #191f28;
+      --navy-soft: #f2f4f6;
+      --blue: #3182f6;
+      --ink: #191f28;
+      --muted: #6b7684;
+      --line: #e5e8eb;
+      --paper: #f2f4f6;
+    }
+    body { background: #f2f4f6; }
+    .topbar {
+      border-color: rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .92);
+      color: var(--ink);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .02);
+    }
+    .top-brand strong { color: var(--ink); }
+    .top-brand small { color: #8b95a1; }
+    .nav-link,
+    .work-trigger { color: #4e5968; }
+    .nav-link:hover,
+    .nav-link.active,
+    .work-trigger:hover,
+    .work-trigger.active,
+    .work-menu.open .work-trigger { background: #f2f4f6; color: var(--ink); }
+    .contact-nav {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+    .contact-nav:hover,
+    .contact-nav.active { background: #1b64da; color: #fff; }
+    .work-dropdown {
+      border: 0;
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(25, 31, 40, .14);
+    }
+    .dropdown-link { border-radius: 14px; color: #4e5968; }
+    .dropdown-link:hover,
+    .dropdown-link.active { background: #f2f4f6; color: var(--ink); }
+
+    .hero {
+      min-height: 94vh;
+      background:
+        radial-gradient(circle at 84% 23%, rgba(49, 130, 246, .13), transparent 28%),
+        linear-gradient(180deg, #fff 0%, #f7f9fc 100%);
+      color: var(--ink);
+    }
+    .hero::before,
+    .hero::after {
+      border: 0;
+      background: rgba(49, 130, 246, .07);
+      filter: blur(2px);
+    }
+    .hero-top,
+    .hero-bottom {
+      border-color: #e5e8eb;
+      color: #8b95a1;
+    }
+    .eyebrow { color: var(--blue); }
+    .hero h1 { max-width: 980px; }
+    .hero h1 span { color: var(--blue); }
+    .hero-copy { color: #6b7684; }
+    .hero-link {
+      padding: 15px 22px;
+      border: 0;
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(49, 130, 246, .22);
+    }
+    .hero-link:hover { background: #1b64da; color: #fff; }
+
+    .section,
+    .section.white,
+    .section.dark {
+      border-color: transparent;
+      background: #f2f4f6;
+      color: var(--ink);
+    }
+    #about { background: #fff; }
+    .dark .section-no,
+    .dark .section-head p { color: inherit; }
+    .career-timeline::before { background: #dbe8f7; }
+    .timeline-item::before { border-color: var(--blue); }
+
+    .section.work-section {
+      padding: 7px clamp(20px, 4.5vw, 72px);
+    }
+    .work-accordion > summary {
+      min-height: 164px;
+      margin: 0;
+      padding: 42px clamp(24px, 3.5vw, 54px);
+      border-radius: 28px;
+      background: #fff;
+      transition: transform .2s ease, box-shadow .2s ease, border-radius .2s ease;
+    }
+    .work-accordion > summary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(25, 31, 40, .06);
+    }
+    .work-accordion[open] > summary,
+    .work-section.dark .work-accordion[open] > summary {
+      border-bottom: 1px solid #eef0f2;
+      border-radius: 28px 28px 0 0;
+    }
+    .accordion-panel {
+      padding: 46px clamp(24px, 3.5vw, 54px) 64px;
+      border-radius: 0 0 28px 28px;
+      background: #fff;
+    }
+    .accordion-title span,
+    .work-section.dark .accordion-title span { color: #8b95a1; }
+    .accordion-copy,
+    .work-section.dark .accordion-copy { color: #6b7684; }
+    .accordion-no,
+    .work-section.dark .accordion-no { color: var(--blue); }
+    .accordion-toggle,
+    .work-section.dark .accordion-toggle {
+      border-color: #dbe8f7;
+      background: #eef6ff;
+      color: var(--blue);
+    }
+
+    .project-card,
+    .dark .project-card {
+      border: 0;
+      border-radius: 24px;
+      background: #f7f8fa;
+      box-shadow: none;
+    }
+    .project-card:hover { box-shadow: 0 18px 42px rgba(25, 31, 40, .09); }
+    .series-gallery,
+    .dark .series-gallery {
+      border-radius: 24px 24px 0 0;
+      background: #f2f4f6;
+    }
+    .series-group,
+    .dark .series-group {
+      border: 0;
+      border-radius: 18px;
+      background: #fff;
+    }
+    .series-head { border-color: #eef0f2; }
+    .dark .project-info span { color: var(--blue); }
+    .dark .project-info p { color: var(--muted); }
+    .placeholder,
+    .dark .placeholder { background: #e8f3ff; color: #5d8fc7; }
+    .placeholder::before,
+    .dark .placeholder::before {
+      background-image:
+        linear-gradient(rgba(49,130,246,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(49,130,246,.06) 1px, transparent 1px);
+    }
+    .placeholder::after { border-color: rgba(49,130,246,.16); }
+
+    .content-metric {
+      display: grid;
+      margin-top: 30px;
+      padding: clamp(28px, 4vw, 48px);
+      grid-template-columns: minmax(160px, .42fr) 1fr;
+      gap: 34px;
+      align-items: center;
+      border-radius: 28px;
+      background: #e8f3ff;
+      color: var(--ink);
+    }
+    .content-metric > strong {
+      color: var(--blue);
+      font-size: clamp(68px, 9vw, 118px);
+      line-height: .88;
+      letter-spacing: -.085em;
+    }
+    .content-metric span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .11em;
+    }
+    .content-metric h3 {
+      margin: 10px 0 8px;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+    .content-metric p {
+      max-width: 620px;
+      margin: 0;
+      color: #6b7684;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .skill,
+    .document-card {
+      border: 0;
+      border-radius: 22px;
+      background: #f7f8fa;
+    }
+    .contact {
+      min-height: 72vh;
+      background: var(--blue);
+    }
+    .contact::after { border-color: rgba(255,255,255,.15); }
+    .contact .eyebrow { color: rgba(255,255,255,.72); }
+    .contact-links a {
+      border-color: rgba(255,255,255,.42);
+      border-radius: 16px;
+      background: rgba(255,255,255,.1);
+    }
+    .contact-links a:hover { background: #fff; color: #1b64da; }
+    .footer { color: rgba(255,255,255,.65); }
+
+    @media (max-width: 820px) {
+      .nav-toggle {
+        border-color: #dfe3e8;
+        background: #f7f8fa;
+        color: var(--ink);
+      }
+      .top-nav {
+        border-color: #e5e8eb;
+        background: rgba(255,255,255,.985);
+        box-shadow: 0 20px 45px rgba(25,31,40,.12);
+      }
+      .work-dropdown { background: #f7f8fa; color: var(--ink); }
+      .dropdown-link { color: #4e5968; }
+      .dropdown-link:hover,
+      .dropdown-link.active { background: #fff; color: var(--ink); }
+      .dropdown-link span { color: var(--blue); }
+      .contact-nav { color: #fff; }
+      .content-metric { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+    @media (max-width: 620px) {
+      .section.work-section { padding: 6px 12px; }
+      .work-accordion > summary { padding: 28px 22px; border-radius: 22px; }
+      .work-accordion[open] > summary,
+      .work-section.dark .work-accordion[open] > summary { border-radius: 22px 22px 0 0; }
+      .accordion-panel { padding: 28px 16px 48px; border-radius: 0 0 22px 22px; }
+      .content-metric { padding: 28px 24px; border-radius: 22px; }
+    }
+
+    /* Focused work showcase */
+    .work-index {
+      padding: clamp(88px, 10vw, 144px) clamp(24px, 6.5vw, 105px) 34px;
+      background: #f2f4f6;
+    }
+    .work-index-head {
+      display: grid;
+      max-width: 1180px;
+      margin: 0 auto 46px;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, .52fr);
+      gap: 18px 72px;
+      align-items: end;
+    }
+    .work-index-head .eyebrow { grid-column: 1 / -1; }
+    .work-index-head h2 {
+      margin: 0;
+      font-size: clamp(42px, 5.5vw, 76px);
+      line-height: 1.07;
+      letter-spacing: -.062em;
+    }
+    .work-index-head p {
+      margin: 0 0 7px;
+      color: #6b7684;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .work-tabs {
+      display: flex;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 7px;
+      gap: 5px;
+      overflow-x: auto;
+      border-radius: 22px;
+      background: #e5e8eb;
+      scrollbar-width: none;
+    }
+    .work-tabs::-webkit-scrollbar { display: none; }
+    .work-tab {
+      display: inline-flex;
+      min-width: max-content;
+      min-height: 50px;
+      padding: 0 17px;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 16px;
+      background: transparent;
+      color: #6b7684;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+    .work-tab span { color: #8b95a1; font-size: 9px; }
+    .work-tab:hover { color: #333d4b; }
+    .work-tab.active {
+      background: #fff;
+      color: #191f28;
+      box-shadow: 0 4px 14px rgba(25,31,40,.08);
+    }
+    .work-tab.active span { color: var(--blue); }
+
+    .section.work-section {
+      display: none;
+      padding: 0 clamp(24px, 6.5vw, 105px) clamp(98px, 10vw, 150px);
+      background: #f2f4f6;
+    }
+    .section.work-section.work-active { display: block; }
+    .work-accordion {
+      display: block;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .work-accordion > summary {
+      min-height: 0;
+      padding: 56px 0 30px;
+      grid-template-columns: 48px minmax(0, 1fr) minmax(280px, .55fr);
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      cursor: default;
+      pointer-events: none;
+    }
+    .work-accordion > summary:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .work-accordion[open] > summary,
+    .work-section.dark .work-accordion[open] > summary {
+      border: 0;
+      border-radius: 0;
+    }
+    .accordion-toggle { display: none; }
+    .accordion-title h2 { font-size: clamp(34px, 4.5vw, 58px); }
+    .accordion-panel {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .project-grid { gap: 14px; }
+    .project-card,
+    .dark .project-card {
+      border-radius: 26px;
+      background: #fff;
+    }
+    .project-card:hover { transform: none; }
+    .project-arrow { display: none; }
+    .project-info { padding: 25px 28px 28px; }
+    .portfolio-project .project-info { min-height: 132px; }
+    .series-gallery,
+    .dark .series-gallery {
+      padding: 14px;
+      gap: 12px;
+      border-radius: 26px 26px 0 0;
+      background: #f7f8fa;
+    }
+    .series-group,
+    .dark .series-group { border-radius: 16px; }
+    .series-head { min-height: 62px; padding: 12px 15px; }
+    .series-image { min-height: 210px; }
+    .series-group.full .series-image { min-height: 260px; }
+
+    .project-card:has(.placeholder) {
+      min-height: 178px;
+      align-items: center;
+      background: #e8f3ff;
+    }
+    .project-card.wide:has(.placeholder) { grid-column: auto; }
+    .project-card:has(.placeholder) .placeholder { display: none; }
+    .project-card:has(.placeholder) .project-info {
+      min-height: 178px;
+      padding: 31px;
+    }
+    .project-card:has(.placeholder) .project-info span { color: #3182f6; }
+    .project-card:has(.placeholder) .project-info h3 {
+      max-width: 430px;
+      margin-top: 14px;
+      font-size: 22px;
+    }
+    .project-card:has(.placeholder) .project-info p { margin-top: 10px; }
+    .document-grid { gap: 12px; }
+    .document-card {
+      min-height: 180px;
+      padding: 30px;
+      border-radius: 24px;
+      background: #fff;
+    }
+    .content-metric { margin-top: 14px; }
+
+    @media (max-width: 920px) {
+      .work-index-head { grid-template-columns: 1fr; }
+      .work-index-head p { max-width: 650px; }
+      .work-accordion > summary {
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 13px;
+      }
+      .accordion-copy { grid-column: 2; }
+    }
+
+    @media (max-width: 620px) {
+      .work-index { padding: 84px 18px 24px; }
+      .work-index-head { margin-bottom: 30px; }
+      .work-index-head h2 { font-size: 42px; }
+      .work-tabs { margin-right: -18px; border-radius: 18px 0 0 18px; }
+      .work-tab { min-height: 46px; padding: 0 14px; border-radius: 13px; }
+      .section.work-section { padding: 0 12px 80px; }
+      .work-accordion > summary {
+        padding: 42px 10px 24px;
+        grid-template-columns: 1fr;
+      }
+      .accordion-no,
+      .accordion-title,
+      .accordion-copy { grid-column: 1; }
+      .accordion-title h2 { font-size: 36px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card:has(.placeholder) .project-info { min-height: 156px; padding: 26px; }
+      .series-gallery { grid-template-columns: 1fr; }
+      .series-image,
+      .series-group.full .series-image { min-height: 170px; }
+      .document-card { min-height: 0; padding: 26px; }
+    }
+
+    /* Top category navigation and project-level folding */
+    .work-index { padding-bottom: clamp(86px, 9vw, 126px); }
+    .work-layout {
+      display: block;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .work-sidebar {
+      position: sticky;
+      top: calc(var(--topbar) + 12px);
+      z-index: 20;
+      width: 100%;
+      padding: 7px;
+      border: 1px solid rgba(229,232,235,.9);
+      border-radius: 22px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 10px 30px rgba(25,31,40,.065);
+      backdrop-filter: blur(16px);
+    }
+    .sidebar-label { display: none; }
+    .work-tabs {
+      display: grid;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 4px;
+      overflow: visible;
+      border-radius: 0;
+      background: transparent;
+    }
+    .work-tab {
+      width: 100%;
+      min-width: 0;
+      min-height: 54px;
+      padding: 0 10px;
+      justify-content: center;
+      border-radius: 16px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .work-tab.active {
+      background: #e8f3ff;
+      color: #1b64da;
+      box-shadow: none;
+    }
+    .work-stage {
+      min-width: 0;
+      margin-top: 42px;
+    }
+    .work-stage .section.work-section {
+      width: 100%;
+      padding: 0;
+      background: transparent;
+    }
+    .work-stage .work-accordion { max-width: none; }
+    .work-stage .work-accordion > summary { padding: 0 0 30px; }
+    .work-stage .accordion-title h2 { font-size: clamp(36px, 4.4vw, 58px); }
+    .project-grid,
+    .document-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .portfolio-fold {
+      grid-column: 1 / -1;
+      overflow: hidden;
+      border: 1px solid #edf0f3;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 8px 26px rgba(25,31,40,.04);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .portfolio-fold[open] {
+      border-color: #d7e8ff;
+      box-shadow: 0 14px 38px rgba(49,130,246,.08);
+    }
+    .portfolio-fold > summary {
+      display: grid;
+      min-height: 108px;
+      padding: 24px 28px;
+      grid-template-columns: minmax(160px, .32fr) minmax(0, 1fr) 42px;
+      gap: 24px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+    }
+    .portfolio-fold > summary::-webkit-details-marker,
+    .document-fold > summary::-webkit-details-marker { display: none; }
+    .fold-company-group {
+      display: grid;
+      gap: 4px;
+      align-content: center;
+    }
+    .fold-company {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .fold-period {
+      color: #77736b;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      white-space: nowrap;
+    }
+    .fold-kind {
+      margin-top: 3px;
+      color: #8b95a1;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .fold-title h3 {
+      margin: 0;
+      font-size: clamp(19px, 2vw, 25px);
+      line-height: 1.35;
+      letter-spacing: -.04em;
+    }
+    .fold-toggle {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 50%;
+      background: #eef6ff;
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .fold-toggle::before { content: "+"; }
+    .portfolio-fold[open] .fold-toggle::before { content: "−"; }
+    .portfolio-fold-body {
+      padding: 0 28px 28px;
+      border-top: 1px solid #eef0f2;
+    }
+    .fold-description {
+      max-width: 820px;
+      margin: 22px 0;
+      color: #6b7684;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .portfolio-fold .series-gallery {
+      padding: 12px;
+      border-radius: 20px;
+      background: #f7f8fa;
+    }
+
+    .document-fold {
+      overflow: hidden;
+      border: 1px solid #edf0f3;
+      border-radius: 20px;
+      background: #fff;
+    }
+    .document-fold > summary {
+      display: grid;
+      min-height: 98px;
+      padding: 22px 28px;
+      grid-template-columns: minmax(170px, .32fr) minmax(0, 1fr) 32px;
+      gap: 22px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+    }
+    .document-fold > summary span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .document-fold > summary h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.4;
+      letter-spacing: -.03em;
+    }
+    .document-fold > summary::after {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      background: #eef6ff;
+      color: var(--blue);
+      font-size: 18px;
+      content: "+";
+    }
+    .document-fold[open] > summary::after { content: "−"; }
+    .document-fold-body {
+      padding: 0 28px 27px;
+      border-top: 1px solid #eef0f2;
+    }
+    .document-fold-body p {
+      margin: 20px 0 0;
+      color: #6b7684;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .work-tabs {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+      }
+      .work-tab {
+        width: auto;
+        min-width: max-content;
+        padding: 0 16px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .work-index { padding-right: 0; padding-left: 0; }
+      .work-index-head { padding-right: 18px; padding-left: 18px; }
+      .work-sidebar {
+        position: sticky;
+        top: var(--topbar);
+        padding: 7px 0 7px 18px;
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+        box-shadow: 0 8px 24px rgba(25,31,40,.06);
+      }
+      .work-tabs {
+        padding-right: 18px;
+        gap: 5px;
+      }
+      .work-stage { padding: 0 18px; }
+      .work-stage .work-accordion > summary { padding-top: 8px; }
+    }
+
+    @media (max-width: 620px) {
+      .work-stage { margin-top: 32px; }
+      .portfolio-fold > summary {
+        min-height: 0;
+        padding: 22px;
+        grid-template-columns: minmax(0, 1fr) 38px;
+        gap: 14px 18px;
+      }
+      .fold-company-group { grid-column: 1; }
+      .fold-title { grid-column: 1; }
+      .fold-toggle { grid-column: 2; grid-row: 1 / span 2; }
+      .portfolio-fold-body { padding: 0 12px 12px; }
+      .fold-description { margin: 18px 10px; }
+      .document-fold > summary {
+        min-height: 0;
+        padding: 21px 22px;
+        grid-template-columns: minmax(0, 1fr) 32px;
+        gap: 9px 16px;
+      }
+      .document-fold > summary span,
+      .document-fold > summary h3 { grid-column: 1; }
+      .document-fold > summary::after { grid-column: 2; grid-row: 1 / span 2; }
+      .document-fold-body { padding: 0 24px 24px; }
+    }
+
+    /* Editorial identity — structured, bold, and distinctly personal */
+    :root {
+      --navy: #111111;
+      --navy-soft: #111111;
+      --blue: #3157ff;
+      --ink: #111111;
+      --muted: #66645f;
+      --line: #c9c6be;
+      --paper: #f3f0e9;
+      --white: #ffffff;
+      --topbar: 72px;
+    }
+    ::selection { background: #3157ff; color: #fff; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Helvetica Neue", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+    }
+    .topbar {
+      height: var(--topbar);
+      border-bottom: 2px solid #111;
+      background: rgba(255,255,255,.97);
+      box-shadow: none;
+    }
+    .topbar-inner { max-width: 1500px; }
+    .top-brand { gap: 16px; }
+    .top-brand strong {
+      color: #111;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+    .top-brand small { color: #66645f; letter-spacing: .13em; }
+    .nav-link,
+    .work-trigger {
+      min-height: 40px;
+      padding: 0 15px;
+      border-radius: 0;
+      color: #333;
+    }
+    .nav-link:hover,
+    .nav-link.active,
+    .work-trigger:hover,
+    .work-trigger.active,
+    .work-menu.open .work-trigger {
+      background: #111;
+      color: #fff;
+    }
+    .contact-nav {
+      border: 0;
+      background: var(--blue);
+      color: #fff;
+    }
+    .contact-nav:hover,
+    .contact-nav.active { background: #111; }
+    .work-dropdown {
+      padding: 9px;
+      border: 2px solid #111;
+      border-radius: 0;
+      box-shadow: 12px 12px 0 rgba(17,17,17,.14);
+    }
+    .dropdown-link { border-radius: 0; }
+    .dropdown-link:hover,
+    .dropdown-link.active { background: #111; color: #fff; }
+    .dropdown-link:hover span,
+    .dropdown-link.active span { color: #93a8ff; }
+
+    .hero {
+      min-height: 94vh;
+      padding-top: calc(var(--topbar) + 32px);
+      background: #f3f0e9;
+      color: #111;
+    }
+    .hero::before {
+      top: 17%;
+      right: 5.5%;
+      width: clamp(190px, 28vw, 430px);
+      height: clamp(190px, 28vw, 430px);
+      border: 0;
+      border-radius: 0;
+      background: #3157ff;
+      filter: none;
+      transform: rotate(7deg);
+    }
+    .hero::after {
+      right: 3%;
+      bottom: 13%;
+      width: clamp(90px, 11vw, 165px);
+      height: clamp(42px, 5.2vw, 78px);
+      border: 0;
+      border-radius: 0;
+      background: #111;
+      filter: none;
+    }
+    .hero-top,
+    .hero-bottom {
+      border-color: #111;
+      color: #55534e;
+      letter-spacing: .12em;
+    }
+    .hero-content { width: min(76%, 1000px); max-width: 1000px; }
+    .hero h1 {
+      max-width: 1050px;
+      font-size: clamp(56px, 7.5vw, 120px);
+      font-weight: 900;
+      line-height: .94;
+      letter-spacing: -.085em;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-copy { max-width: 580px; color: #55534e; }
+    .hero-link {
+      min-height: 52px;
+      padding: 0 22px;
+      border: 2px solid #111;
+      border-radius: 0;
+      background: #111;
+      box-shadow: none;
+      color: #fff;
+    }
+    .hero-link:hover { background: var(--blue); color: #fff; }
+
+    #about {
+      border-top: 0;
+      border-bottom: 2px solid #111;
+      background: #fff;
+    }
+    .intro-copy h2,
+    .work-index-head h2,
+    .accordion-title h2,
+    .contact h2 { font-weight: 900; }
+    .career-timeline::before { width: 2px; background: #111; }
+    .timeline-item::before {
+      width: 14px;
+      height: 14px;
+      border: 0;
+      border-radius: 0;
+      background: var(--blue);
+      transform: rotate(45deg);
+    }
+    .timeline-item time { color: #55534e; }
+
+    .work-index { background: var(--paper); }
+    .work-index-head { border-bottom: 2px solid #111; padding-bottom: 38px; }
+    .work-index-head p { color: #55534e; }
+    .eyebrow,
+    .work-index .eyebrow { color: var(--blue); }
+    .work-sidebar {
+      padding: 0;
+      border: 2px solid #111;
+      border-radius: 0;
+      background: #fff;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    .work-tabs { gap: 0; }
+    .work-tab {
+      min-height: 58px;
+      border-right: 1px solid #c9c6be;
+      border-radius: 0;
+      background: #fff;
+      color: #44423e;
+      font-size: 11px;
+    }
+    .work-tab:last-child { border-right: 0; }
+    .work-tab:hover { background: #e8e5dd; color: #111; }
+    .work-tab.active {
+      background: #111;
+      color: #fff;
+    }
+    .work-tab.active span { color: #93a8ff; }
+    .work-stage { margin-top: 48px; }
+    .work-stage .work-accordion > summary {
+      padding: 0 0 32px;
+      border-bottom: 2px solid #111;
+      border-radius: 0;
+      background: transparent;
+    }
+    .work-stage .work-accordion > summary:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .work-stage .accordion-panel {
+      padding: 28px 0 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .accordion-title span,
+    .work-section.dark .accordion-title span { color: #77736b; }
+    .accordion-copy,
+    .work-section.dark .accordion-copy { color: #55534e; }
+
+    .portfolio-fold,
+    .document-fold {
+      border: 1px solid #111;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .portfolio-fold[open] {
+      border-color: #111;
+      border-top: 5px solid var(--blue);
+      box-shadow: none;
+    }
+    .portfolio-fold > summary { min-height: 112px; }
+    .fold-company { color: var(--blue); letter-spacing: .04em; }
+    .fold-period { color: #77736b; }
+    .fold-kind { color: #77736b; }
+    .fold-title h3 { font-weight: 800; }
+    .fold-toggle,
+    .document-fold > summary::after {
+      border-radius: 0;
+      background: #111;
+      color: #fff;
+    }
+    .portfolio-fold[open] .fold-toggle,
+    .document-fold[open] > summary::after { background: var(--blue); }
+    .portfolio-fold-body,
+    .document-fold-body { border-color: #c9c6be; }
+    .fold-description,
+    .document-fold-body p { color: #55534e; }
+    .portfolio-fold .series-gallery,
+    .dark .series-gallery {
+      border-radius: 0;
+      background: #e8e5dd;
+    }
+    .series-group,
+    .dark .series-group {
+      border: 1px solid #111;
+      border-radius: 0;
+    }
+    .series-head { border-color: #111; }
+    .series-image { background: #fff; }
+
+    .content-metric {
+      border: 2px solid #111;
+      border-radius: 0;
+      background: var(--blue);
+      color: #fff;
+    }
+    .content-metric > strong,
+    .content-metric span { color: #fff; }
+    .content-metric p { color: rgba(255,255,255,.82); }
+
+    .contact {
+      min-height: 72vh;
+      background: #111;
+    }
+    .contact::after {
+      border-color: var(--blue);
+      border-radius: 0;
+      transform: rotate(8deg);
+    }
+    .contact .eyebrow { color: #93a8ff; }
+    .contact-links a {
+      border: 1px solid rgba(255,255,255,.68);
+      border-radius: 0;
+      background: transparent;
+    }
+    .contact-links a:hover { border-color: var(--blue); background: var(--blue); color: #fff; }
+
+    @media (max-width: 980px) {
+      .work-tab { border-right: 1px solid #c9c6be; }
+    }
+    @media (max-width: 820px) {
+      .nav-toggle {
+        border: 1px solid #111;
+        border-radius: 0;
+        background: #fff;
+      }
+      .top-nav {
+        border: 2px solid #111;
+        border-radius: 0;
+        background: #fff;
+        box-shadow: 10px 10px 0 rgba(17,17,17,.14);
+      }
+      .work-dropdown { border: 0; box-shadow: none; }
+      .hero::before { opacity: .16; }
+      .hero::after { opacity: .92; }
+      .hero-content { width: 100%; }
+    }
+    @media (max-width: 720px) {
+      .work-sidebar {
+        border-top: 2px solid #111;
+        border-bottom: 2px solid #111;
+        background: rgba(255,255,255,.97);
+        box-shadow: none;
+      }
+      .work-index-head { border-bottom: 0; padding-bottom: 0; }
+    }
+    @media (max-width: 620px) {
+      .hero h1 { font-size: clamp(48px, 14vw, 68px); }
+      .hero::before {
+        top: 20%;
+        right: -24%;
+        width: 74vw;
+        height: 74vw;
+      }
+      .portfolio-fold > summary { padding: 21px 20px; }
+      .content-metric { border-width: 1px; }
+    }
+
+    /* Reference-led refinement: image-first editorial portfolio */
+    :root {
+      --navy: #171717;
+      --navy-soft: #171717;
+      --blue: #e9552f;
+      --ink: #171717;
+      --muted: #6f6f6a;
+      --line: #deded9;
+      --paper: #f6f6f3;
+      --white: #fff;
+      --topbar: 74px;
+    }
+    ::selection { background: #ffe0d7; color: #171717; }
+    body {
+      background: var(--paper);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Helvetica Neue", Arial, sans-serif;
+    }
+    .topbar {
+      height: var(--topbar);
+      border-bottom: 1px solid #deded9;
+      background: rgba(255,255,255,.96);
+    }
+    .top-brand strong { font-size: 17px; letter-spacing: -.02em; }
+    .top-brand small { color: #8a8a85; }
+    .nav-link,
+    .work-trigger {
+      min-height: 42px;
+      border-radius: 0;
+      background: transparent;
+      color: #555550;
+    }
+    .nav-link::after,
+    .work-trigger::after {
+      position: absolute;
+      right: 14px;
+      bottom: 5px;
+      left: 14px;
+      height: 2px;
+      background: var(--blue);
+      content: "";
+      opacity: 0;
+      transform: scaleX(.25);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active,
+    .work-trigger:hover,
+    .work-trigger.active,
+    .work-menu.open .work-trigger {
+      background: transparent;
+      color: #171717;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after,
+    .work-trigger:hover::after,
+    .work-trigger.active::after,
+    .work-menu.open .work-trigger::after { opacity: 1; transform: scaleX(1); }
+    .contact-nav {
+      border: 1px solid #171717;
+      border-radius: 999px;
+      background: #171717;
+      color: #fff;
+    }
+    .contact-nav::after { display: none; }
+    .contact-nav:hover,
+    .contact-nav.active { background: var(--blue); color: #fff; }
+    .work-dropdown {
+      padding: 10px;
+      border: 1px solid #deded9;
+      border-radius: 14px;
+      box-shadow: 0 22px 55px rgba(23,23,23,.11);
+    }
+    .dropdown-link { border-radius: 8px; }
+    .dropdown-link:hover,
+    .dropdown-link.active { background: #f2f2ef; color: #171717; }
+    .dropdown-link:hover span,
+    .dropdown-link.active span { color: var(--blue); }
+
+    .hero {
+      min-height: 92vh;
+      padding-top: calc(var(--topbar) + 34px);
+      background: #fff;
+      color: #171717;
+    }
+    .hero::before,
+    .hero::after { display: none; }
+    .hero-top,
+    .hero-bottom {
+      border-color: #cfcfca;
+      color: #858580;
+      letter-spacing: .08em;
+    }
+    .hero-content {
+      display: block;
+      width: 100%;
+      max-width: none;
+    }
+    .hero-main { min-width: 0; }
+    .eyebrow { color: var(--blue); letter-spacing: .13em; }
+    .hero h1 {
+      max-width: 1020px;
+      margin: 24px 0 30px;
+      font-size: clamp(54px, 7vw, 108px);
+      font-weight: 760;
+      line-height: 1.01;
+      letter-spacing: -.07em;
+    }
+    .hero h1 span { color: #6d6d68; }
+    .hero-copy { color: #666661; font-size: 15px; line-height: 1.8; }
+    .hero-link {
+      min-height: 0;
+      margin-top: 34px;
+      padding: 0 0 8px;
+      border: 0;
+      border-bottom: 1px solid #171717;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: #171717;
+    }
+    .hero-link:hover { border-color: var(--blue); background: transparent; color: var(--blue); }
+    #about {
+      border-bottom: 0;
+      background: #f6f6f3;
+    }
+    .intro-grid { gap: clamp(62px, 9vw, 132px); }
+    .intro-copy h2,
+    .work-index-head h2,
+    .accordion-title h2,
+    .contact h2 { font-weight: 760; }
+    .intro-copy p { color: #6b6b66; }
+    .career-timeline::before { width: 1px; background: #cfcfca; }
+    .timeline-item::before {
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      background: #f6f6f3;
+      transform: none;
+    }
+    .timeline-item time { color: #858580; }
+
+    .work-index { background: #fff; }
+    .work-index-head {
+      margin-bottom: 48px;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .work-index-head p { color: #6b6b66; }
+    .work-sidebar {
+      top: calc(var(--topbar) + 10px);
+      padding: 0;
+      border: 0;
+      border-top: 1px solid #171717;
+      border-bottom: 1px solid #deded9;
+      border-radius: 0;
+      background: rgba(255,255,255,.96);
+      box-shadow: none;
+    }
+    .work-tabs { gap: 0; }
+    .work-tab {
+      position: relative;
+      min-height: 62px;
+      border: 0;
+      border-right: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #777772;
+      font-size: 11px;
+    }
+    .work-tab::after {
+      position: absolute;
+      right: 12px;
+      bottom: -1px;
+      left: 12px;
+      height: 3px;
+      background: var(--blue);
+      content: "";
+      opacity: 0;
+      transform: scaleX(.35);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .work-tab:hover { background: transparent; color: #171717; }
+    .work-tab.active { background: transparent; color: #171717; }
+    .work-tab.active::after { opacity: 1; transform: scaleX(1); }
+    .work-tab.active span { color: var(--blue); }
+    .work-stage { margin-top: 54px; }
+    .work-stage .work-accordion > summary {
+      padding: 0 0 34px;
+      border: 0;
+      border-bottom: 1px solid #171717;
+      background: transparent;
+    }
+    .work-stage .accordion-panel { padding: 0; background: transparent; }
+    .accordion-title span,
+    .work-section.dark .accordion-title span { color: #8a8a85; }
+    .accordion-copy,
+    .work-section.dark .accordion-copy { color: #6b6b66; }
+
+    .project-grid,
+    .document-grid { gap: 0; }
+    .portfolio-fold,
+    .document-fold {
+      border: 0;
+      border-bottom: 1px solid #deded9;
+      border-radius: 0;
+      background: #fff;
+      box-shadow: none;
+    }
+    .portfolio-fold[open] {
+      border-top: 0;
+      border-color: #cfcfca;
+      background: #fafaf8;
+    }
+    .portfolio-fold > summary {
+      min-height: 118px;
+      padding: 28px 8px;
+    }
+    .fold-company { color: var(--blue); }
+    .fold-period { color: #77736b; }
+    .fold-kind { color: #92928d; font-weight: 700; }
+    .fold-title h3 { font-size: clamp(19px, 1.9vw, 24px); font-weight: 700; }
+    .fold-toggle,
+    .document-fold > summary::after {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #cfcfca;
+      border-radius: 50%;
+      background: #fff;
+      color: #171717;
+      font-weight: 500;
+    }
+    .portfolio-fold[open] .fold-toggle,
+    .document-fold[open] > summary::after {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+    .portfolio-fold-body { padding: 0 0 34px; border-top: 0; }
+    .fold-description { margin: 4px 8px 26px; color: #6b6b66; }
+    .portfolio-fold .series-gallery,
+    .dark .series-gallery {
+      padding: 14px;
+      border-radius: 10px;
+      background: #f0f0ed;
+    }
+    .series-group,
+    .dark .series-group {
+      border: 0;
+      border-radius: 7px;
+      box-shadow: 0 0 0 1px rgba(23,23,23,.07);
+    }
+    .series-head { border-color: #e3e3df; }
+    .series-head span { color: var(--blue); }
+    .series-images { background: #e7e7e3; }
+    .series-image { background: #fff; }
+
+    .document-fold > summary { min-height: 104px; padding: 24px 8px; }
+    .document-fold-body { padding: 0 8px 26px; border-top: 0; }
+    .content-metric {
+      margin-top: 44px;
+      border: 0;
+      border-radius: 12px;
+      background: #1b1b1b;
+      color: #fff;
+    }
+    .content-metric > strong,
+    .content-metric span { color: #ff8b6d; }
+
+    .contact { min-height: 70vh; background: #20201e; }
+    .contact::after { display: none; }
+    .contact .eyebrow { color: #ff8b6d; }
+    .contact-links a {
+      border: 0;
+      border-top: 1px solid rgba(255,255,255,.36);
+      border-bottom: 1px solid rgba(255,255,255,.36);
+      border-radius: 0;
+      background: transparent;
+    }
+    .contact-links a:hover { border-color: #ff8b6d; background: transparent; color: #ff8b6d; }
+
+    @media (max-width: 980px) {
+      .work-tab { border-right: 0; }
+    }
+    @media (max-width: 820px) {
+      .nav-toggle { border: 1px solid #deded9; border-radius: 8px; }
+      .top-nav { border: 1px solid #deded9; border-radius: 12px; box-shadow: 0 18px 45px rgba(23,23,23,.1); }
+    }
+    @media (max-width: 720px) {
+      .work-sidebar {
+        border-top: 1px solid #deded9;
+        border-bottom: 1px solid #deded9;
+        background: rgba(255,255,255,.97);
+      }
+      .work-index-head { padding-bottom: 0; }
+    }
+    @media (max-width: 620px) {
+      .hero h1 { font-size: clamp(46px, 13.2vw, 64px); }
+      .portfolio-fold > summary { padding: 22px 4px; }
+      .portfolio-fold-body { padding-bottom: 24px; }
+      .fold-description { margin-right: 4px; margin-left: 4px; }
+      .document-fold > summary { padding-right: 4px; padding-left: 4px; }
+    }
+
+    /* Compact contact close */
+    .contact {
+      min-height: auto;
+      padding: clamp(88px, 10vw, 138px) clamp(24px, 6.5vw, 105px) 30px;
+      overflow: visible;
+      border-top: 1px solid #171717;
+      background: #f6f6f3;
+      color: #171717;
+    }
+    .contact::after { display: none; }
+    .contact-shell {
+      display: grid;
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, .72fr);
+      gap: clamp(52px, 8vw, 120px);
+      align-items: end;
+    }
+    .contact .eyebrow { color: var(--blue); }
+    .contact h2 {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: #171717;
+      font-size: clamp(46px, 6.4vw, 86px);
+      font-weight: 760;
+      line-height: 1.02;
+      letter-spacing: -.065em;
+    }
+    .contact-panel {
+      padding: clamp(26px, 3.2vw, 38px);
+      border: 1px solid #d4d4cf;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .contact-panel > p {
+      margin: 0;
+      color: #666661;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .contact-links {
+      display: grid;
+      margin-top: 28px;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .contact-links a {
+      display: grid;
+      width: 100%;
+      min-width: 0;
+      min-height: 64px;
+      padding: 0 18px;
+      grid-template-columns: 56px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      border: 1px solid #171717;
+      border-radius: 0;
+      background: #171717;
+      color: #fff;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .contact-links a + a { background: #fff; color: #171717; }
+    .contact-links a:hover,
+    .contact-links a + a:hover {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+    .contact-links a span {
+      color: currentColor;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .09em;
+    }
+    .contact-links a strong { font-size: 13px; letter-spacing: -.02em; }
+    .contact-links a i { font-size: 18px; font-style: normal; }
+    .contact-note {
+      display: block;
+      margin-top: 14px;
+      color: #92928d;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+    .contact .footer {
+      position: static;
+      display: flex;
+      width: min(100%, 1180px);
+      margin: clamp(72px, 8vw, 112px) auto 0;
+      padding-top: 20px;
+      justify-content: space-between;
+      border-top: 1px solid #d4d4cf;
+      color: #7d7d78;
+      font-size: 9px;
+      letter-spacing: .06em;
+    }
+    @media (max-width: 820px) {
+      .contact-shell { grid-template-columns: 1fr; gap: 42px; }
+      .contact h2 { font-size: clamp(44px, 12vw, 68px); }
+      .contact-panel { max-width: 620px; }
+    }
+    @media (max-width: 540px) {
+      .contact { padding-right: 18px; padding-left: 18px; }
+      .contact h2 { font-size: 45px; }
+      .contact-panel { padding: 22px 18px; }
+      .contact-links a { min-height: 60px; grid-template-columns: 50px minmax(0, 1fr) auto; }
+      .contact .footer { display: block; line-height: 1.9; }
+      .contact .footer span { display: block; }
+    }
+
+    .press-link-gallery {
+      display: block;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+    .press-link-card {
+      display: grid;
+      padding: clamp(26px, 4vw, 48px);
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .58fr);
+      gap: 30px clamp(38px, 6vw, 82px);
+      border: 1px solid #deded9;
+      border-radius: 10px;
+      background: #f3f3f0;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .press-link-card:hover {
+      border-color: #bdbdb7;
+      background: #efefeb;
+    }
+    .press-link-copy > span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+    .press-link-copy h4 {
+      margin: 14px 0 12px;
+      font-size: clamp(25px, 3.2vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+    .press-link-copy p {
+      max-width: 610px;
+      margin: 0;
+      color: #6b6b66;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    .press-link-options {
+      margin: 0;
+      border-top: 1px solid #171717;
+    }
+    .press-link-options div {
+      display: grid;
+      min-height: 46px;
+      padding: 0 2px;
+      grid-template-columns: 66px 1fr;
+      gap: 14px;
+      align-items: center;
+      border-bottom: 1px solid #d5d5d0;
+    }
+    .press-link-options dt {
+      color: #8a8a85;
+      font-size: 9px;
+      font-weight: 800;
+    }
+    .press-link-options dd {
+      margin: 0;
+      color: #33332f;
+      font-size: 11px;
+      font-weight: 750;
+    }
+    .press-link-action {
+      display: flex;
+      grid-column: 1 / -1;
+      min-height: 52px;
+      padding: 0 18px;
+      align-items: center;
+      justify-content: space-between;
+      background: #171717;
+      color: #fff;
+      font-size: 12px;
+      transition: background .2s ease;
+    }
+    .press-link-card:hover .press-link-action { background: var(--blue); }
+    .press-link-action span { font-size: 17px; }
+    @media (max-width: 760px) {
+      .press-link-card { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 620px) {
+      .press-link-card { padding: 24px 20px; border-radius: 8px; }
+      .press-link-copy h4 { font-size: 27px; }
+      .press-link-options div { grid-template-columns: 56px 1fr; }
+    }
+
+    .website-link-gallery {
+      display: block;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+    .website-case-card {
+      display: grid;
+      padding: clamp(18px, 3vw, 32px);
+      grid-template-columns: minmax(0, 1.18fr) minmax(260px, .82fr);
+      gap: clamp(24px, 4vw, 52px);
+      align-items: stretch;
+      border: 1px solid #deded9;
+      border-radius: 10px;
+      background: #f3f3f0;
+    }
+    .website-thumb-slot {
+      position: relative;
+      display: block;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid #cfcfca;
+      border-radius: 7px;
+      background: #e7e7e3;
+    }
+    .website-thumb-slot::before {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      z-index: 2;
+      display: flex;
+      width: max-content;
+      min-height: 30px;
+      padding: 0 12px;
+      align-items: center;
+      border-radius: 999px;
+      background: rgba(23,23,23,.86);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .1em;
+      content: "HOMEPAGE PREVIEW  ↗";
+    }
+    .website-thumb-slot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .35s ease, filter .35s ease;
+    }
+    .website-thumb-slot:hover img { transform: scale(1.018); filter: brightness(.9); }
+    .website-case-meta {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+    }
+    .website-case-meta > span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+    .website-case-meta h4 {
+      margin: 14px 0 12px;
+      font-size: clamp(25px, 3vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+    .website-case-meta p {
+      margin: 0;
+      color: #6b6b66;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    .website-case-facts {
+      margin: 24px 0 0;
+      border-top: 1px solid #171717;
+    }
+    .website-case-facts div {
+      display: grid;
+      min-height: 44px;
+      padding: 0 2px;
+      grid-template-columns: 64px 1fr;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid #d5d5d0;
+    }
+    .website-case-facts dt {
+      color: #8a8a85;
+      font-size: 9px;
+      font-weight: 800;
+    }
+    .website-case-facts dd {
+      margin: 0;
+      color: #33332f;
+      font-size: 11px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+    .website-live-link {
+      display: flex;
+      min-height: 52px;
+      margin-top: auto;
+      padding: 0 18px;
+      align-items: center;
+      justify-content: space-between;
+      background: #171717;
+      color: #fff;
+      font-size: 12px;
+      transition: background .2s ease;
+    }
+    .website-live-link:hover { background: var(--blue); }
+    .website-live-link span { font-size: 17px; }
+    @media (max-width: 760px) {
+      .website-case-card { grid-template-columns: 1fr; }
+      .website-live-link { margin-top: 28px; }
+    }
+    @media (max-width: 620px) {
+      .website-case-card { padding: 16px; border-radius: 8px; }
+      .website-case-meta h4 { font-size: 27px; }
+    }
+
+    .channel-link-gallery {
+      display: block;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+    .channel-directory {
+      padding: clamp(24px, 4vw, 46px);
+      border: 1px solid #deded9;
+      border-radius: 10px;
+      background: #f3f3f0;
+    }
+    .channel-directory-head {
+      display: grid;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, .7fr);
+      gap: 24px 54px;
+      align-items: end;
+      border-bottom: 1px solid #171717;
+    }
+    .channel-directory-head span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+    .channel-directory-head h4 {
+      margin: 12px 0 0;
+      font-size: clamp(26px, 3.2vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+    .channel-directory-head p {
+      margin: 0;
+      color: #6b6b66;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    .channel-link-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .channel-link-grid.single { grid-template-columns: minmax(0, 1fr); }
+    .channel-link-card {
+      position: relative;
+      display: flex;
+      min-height: 164px;
+      padding: 20px;
+      flex-direction: column;
+      border: 1px solid #d5d5d0;
+      border-radius: 7px;
+      background: #fff;
+      color: #171717;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .channel-platform-logo {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      object-fit: contain;
+      object-position: left center;
+    }
+    .channel-link-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .channel-link-card > span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .channel-link-card strong {
+      margin-top: 11px;
+      font-size: 18px;
+      letter-spacing: -.035em;
+    }
+    .channel-link-card p {
+      margin: 9px 0 18px;
+      color: #777772;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .channel-link-card i {
+      margin-top: auto;
+      font-size: 17px;
+      font-style: normal;
+      text-align: right;
+    }
+    .channel-work-samples {
+      display: grid;
+      margin-top: 14px;
+      padding: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      border-radius: 10px;
+      background: #f0f0ed;
+    }
+    .channel-work-samples .series-group:last-child { grid-column: 1 / -1; }
+    @media (max-width: 820px) {
+      .channel-directory-head { grid-template-columns: 1fr; }
+      .channel-link-grid { grid-template-columns: 1fr; }
+      .channel-link-card { min-height: 132px; }
+      .channel-work-samples { grid-template-columns: 1fr; }
+      .channel-work-samples .series-group:last-child { grid-column: auto; }
+    }
+    @media (max-width: 620px) {
+      .channel-directory { padding: 20px 16px; border-radius: 8px; }
+      .channel-directory-head h4 { font-size: 27px; }
+    }
+
+    /* 한 장씩 보는 작업물 슬라이드 */
+    .portfolio-fold .series-gallery:has(.series-group),
+    .channel-work-samples {
+      grid-template-columns: 1fr;
+    }
+    .portfolio-fold .series-group,
+    .channel-work-samples .series-group,
+    .portfolio-fold .series-group.full,
+    .channel-work-samples .series-group.full {
+      display: grid;
+      grid-column: auto;
+      grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+      align-items: stretch;
+    }
+    .portfolio-fold .series-head,
+    .channel-work-samples .series-head {
+      min-height: 100%;
+      padding: 22px 20px;
+      grid-template-columns: 1fr;
+      align-content: start;
+      border-right: 1px solid #e3e3df;
+      border-bottom: 0;
+    }
+    .portfolio-fold .series-head span,
+    .channel-work-samples .series-head span { grid-column: 1; }
+    .portfolio-fold .series-head small,
+    .channel-work-samples .series-head small {
+      margin-top: 8px;
+      white-space: normal;
+    }
+    .series-images,
+    .series-images.three,
+    .series-images.web,
+    .series-images.single {
+      position: relative;
+      display: block;
+      height: clamp(330px, 34vw, 470px);
+      padding: 0;
+      overflow: hidden;
+      background: #ecece8;
+    }
+    .series-image,
+    .series-group.full .series-image {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+      border: 0;
+      border-radius: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(2.5%);
+      transition: opacity .28s ease, transform .38s cubic-bezier(.22,.61,.36,1);
+    }
+    .series-images:not(.slider-ready) > .series-image:first-child,
+    .series-group .series-images > .series-image.is-active {
+      z-index: 1;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+    .series-image img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+    }
+    .slider-control {
+      position: absolute;
+      z-index: 4;
+      top: 50%;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      place-items: center;
+      border: 1px solid rgba(23,23,23,.16);
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      color: #171717;
+      font: inherit;
+      font-size: 19px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .slider-control:hover,
+    .slider-control:focus-visible {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+      outline: none;
+    }
+    .slider-prev { left: 16px; }
+    .slider-next { right: 16px; }
+    .slider-meta {
+      position: absolute;
+      z-index: 4;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      min-height: 32px;
+      padding: 7px 11px;
+      gap: 5px;
+      align-items: center;
+      border-radius: 999px;
+      background: rgba(23,23,23,.78);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      backdrop-filter: blur(8px);
+    }
+    .slider-dots {
+      position: absolute;
+      z-index: 4;
+      bottom: 17px;
+      left: 50%;
+      display: flex;
+      gap: 6px;
+      transform: translateX(-50%);
+    }
+    .slider-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(23,23,23,.24);
+      cursor: pointer;
+      transition: width .2s ease, background .2s ease;
+    }
+    .slider-dot.is-active {
+      width: 22px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+    .series-images.slider-single .slider-control,
+    .series-images.slider-single .slider-meta,
+    .series-images.slider-single .slider-dots { display: none; }
+    @media (max-width: 820px) {
+      .portfolio-fold .series-group,
+      .channel-work-samples .series-group,
+      .portfolio-fold .series-group.full,
+      .channel-work-samples .series-group.full {
+        grid-template-columns: 1fr;
+      }
+      .portfolio-fold .series-head,
+      .channel-work-samples .series-head {
+        min-height: auto;
+        padding: 16px 17px;
+        grid-template-columns: 1fr auto;
+        border-right: 0;
+        border-bottom: 1px solid #e3e3df;
+      }
+      .portfolio-fold .series-head span,
+      .channel-work-samples .series-head span { grid-column: 1 / -1; }
+      .portfolio-fold .series-head small,
+      .channel-work-samples .series-head small { margin-top: 0; white-space: nowrap; }
+    }
+    @media (max-width: 620px) {
+      .series-images,
+      .series-images.three,
+      .series-images.web,
+      .series-images.single {
+        height: clamp(235px, 62vw, 340px);
+      }
+      .slider-control { width: 38px; height: 38px; font-size: 17px; }
+      .slider-prev { left: 10px; }
+      .slider-next { right: 10px; }
+      .slider-meta { right: 10px; bottom: 10px; }
+      .slider-dots { bottom: 13px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .series-image { transition: none; }
+    }
+
+    .resource-directory {
+      padding: clamp(22px, 3vw, 34px);
+      border: 1px solid #deded8;
+      border-radius: 9px;
+      background: #f7f7f4;
+    }
+    .series-gallery > .resource-directory { grid-column: 1 / -1; }
+    .resource-directory-head {
+      display: grid;
+      padding-bottom: 22px;
+      grid-template-columns: minmax(0, .72fr) minmax(280px, 1fr);
+      gap: 20px 40px;
+      align-items: end;
+      border-bottom: 1px solid #d7d7d1;
+    }
+    .resource-directory-head span,
+    .resource-block-head span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+    .resource-directory-head h4 {
+      margin: 10px 0 0;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+    .resource-directory-head p {
+      margin: 0;
+      color: #6c6c67;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    .resource-block { margin-top: 22px; }
+    .resource-block + .resource-block {
+      padding-top: 22px;
+      border-top: 1px solid #d7d7d1;
+    }
+    .resource-block-head {
+      display: flex;
+      margin-bottom: 11px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .resource-block-head strong {
+      font-size: 14px;
+      letter-spacing: -.025em;
+    }
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+    }
+    .resource-grid.single { grid-template-columns: minmax(0, 1fr); }
+    .resource-card {
+      position: relative;
+      display: flex;
+      min-height: 132px;
+      padding: 18px;
+      flex-direction: column;
+      border: 1px solid #d7d7d1;
+      border-radius: 6px;
+      background: #fff;
+      color: #171717;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    a.resource-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .resource-card > span {
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .resource-card strong {
+      margin-top: 12px;
+      font-size: 17px;
+      line-height: 1.3;
+      letter-spacing: -.035em;
+    }
+    .resource-card small {
+      margin-top: 7px;
+      color: #777772;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+    .resource-card i {
+      margin-top: auto;
+      color: var(--blue);
+      font-size: 16px;
+      font-style: normal;
+      text-align: right;
+    }
+    .resource-card.pending {
+      border-style: dashed;
+      background: #eeeeea;
+    }
+    .resource-card.pending > span,
+    .resource-card.pending i { color: #8a8a84; }
+    @media (max-width: 820px) {
+      .resource-directory-head { grid-template-columns: 1fr; }
+      .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px) {
+      .resource-directory { padding: 18px 14px; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .resource-card { min-height: 112px; }
+    }
+  
+    /* Minimal contact footer */
+    .contact.simple-contact {
+      min-height: auto;
+      padding: 54px clamp(24px, 6.5vw, 105px) 26px;
+      border-top: 1px solid #d8d8d3;
+      background: #fff;
+      color: #171717;
+    }
+    .simple-contact-inner {
+      display: flex;
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .simple-contact-brand {
+      display: grid;
+      gap: 8px;
+    }
+    .simple-contact-brand strong {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+    .simple-contact-brand span {
+      color: #888883;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .1em;
+    }
+    .simple-contact-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .simple-contact-links a {
+      padding: 0 0 5px;
+      border-bottom: 1px solid #171717;
+      color: #171717;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .simple-contact-links a:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+    .simple-footer {
+      display: flex;
+      width: min(100%, 1180px);
+      margin: 42px auto 0;
+      padding-top: 18px;
+      justify-content: space-between;
+      border-top: 1px solid #e5e5e0;
+      color: #999994;
+      font-size: 9px;
+      letter-spacing: .08em;
+    }
+    @media (max-width: 620px) {
+      .contact.simple-contact {
+        padding: 42px 18px 22px;
+      }
+      .simple-contact-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .simple-contact-links {
+        gap: 18px;
+      }
+      .simple-footer {
+        margin-top: 34px;
+      }
+    }
+
+  
+    /* Freelance project under career */
+    .freelance-project {
+      margin-top: 34px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .freelance-label {
+      margin-bottom: 16px;
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+    .freelance-row {
+      display: grid;
+      grid-template-columns: 138px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .freelance-row time {
+      padding-top: 2px;
+      color: #858580;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .freelance-row strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.3;
+    }
+    .freelance-row p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    @media (max-width: 620px) {
+      .freelance-row {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+    }
+
+  
+    /* Company industry / business nature in career timeline */
+    .timeline-company {
+      min-width: 0;
+    }
+    .timeline-company strong,
+    .freelance-row strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.3;
+    }
+    .company-industry,
+    .company-nature {
+      display: inline-flex;
+      width: max-content;
+      max-width: 100%;
+      margin-top: 7px;
+      align-items: center;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .company-industry {
+      margin-right: 6px;
+      padding: 4px 8px;
+      border: 1px solid #d8d8d3;
+      border-radius: 999px;
+      background: #fff;
+      color: #6f6f6a;
+      font-weight: 750;
+    }
+    .company-nature {
+      color: #777772;
+      font-weight: 650;
+    }
+    .timeline-company p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .freelance-row .company-industry,
+    .freelance-row .company-nature {
+      margin-top: 7px;
+    }
+    @media (max-width: 720px) {
+      .company-industry,
+      .company-nature {
+        display: flex;
+        width: max-content;
+      }
+      .company-nature {
+        margin-top: 5px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a class="top-brand" href="#home">
+        <strong>JINA KIM</strong>
+        <small>PR · MARKETING PORTFOLIO</small>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="메뉴 열기" aria-expanded="false"></button>
+      <nav class="top-nav" id="topNav" aria-label="포트폴리오 메뉴">
+        <a class="nav-link" href="#about" data-nav="about">소개·경력</a>
+        <div class="work-menu" id="workMenu">
+          <button class="work-trigger" id="workTrigger" type="button" aria-expanded="false">작업 분야 <span aria-hidden="true">⌄</span></button>
+          <div class="work-dropdown" aria-label="작업 분야 카테고리">
+            <a class="dropdown-link" href="#ir" data-nav="ir"><span>01</span>전략기획·IR</a>
+            <a class="dropdown-link" href="#pr" data-nav="pr"><span>02</span>기업홍보·PR</a>
+            <a class="dropdown-link" href="#website" data-nav="website"><span>03</span>홈페이지·디지털 브랜딩</a>
+            <a class="dropdown-link" href="#digital" data-nav="digital"><span>04</span>디지털 마케팅·채널 운영</a>
+            <a class="dropdown-link" href="#design" data-nav="design"><span>05</span>홍보 콘텐츠·디자인</a>
+            <a class="dropdown-link" href="#event" data-nav="event"><span>06</span>전시·행사·대외협력</a>
+            <a class="dropdown-link" href="#operations" data-nav="operations"><span>07</span>경영관리·인사운영</a>
+          </div>
+        </div>
+        <a class="nav-link contact-nav" href="#contact" data-nav="contact">연락처</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page" id="main">
+    <main>
+      <section class="hero" id="home" data-section>
+        <div class="hero-top"><span>KIM JINA · PORTFOLIO</span><span>2018 — 2026</span></div>
+        <div class="hero-content">
+          <div class="hero-main">
+            <span class="eyebrow">PR · IR · DIGITAL COMMUNICATION</span>
+            <h1>기술을 이해하고<br><span>이야기로 설계합니다.</span></h1>
+            <p class="hero-copy">기술과 사업을 이해한 뒤, 필요한 메시지와 결과물로 풀어냅니다. IR·PR부터 웹, 콘텐츠, 전시·행사까지 직접 기획하고 실행해왔습니다.</p>
+            <a class="hero-link" href="#work">작업 카테고리 보기 <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-bottom"><span>IN-HOUSE PR & MARKETING</span><span>SCROLL TO EXPLORE</span></div>
+      </section>
+
+      <section class="section white" id="about" data-section>
+        <div class="intro-grid reveal">
+          <div class="intro-copy">
+            <span class="eyebrow" style="color:var(--blue)">ABOUT & CAREER</span>
+            <h2>기획부터 제작,<br>운영까지.</h2>
+            <p>바이오, 헬스케어, AI 기술기업에서 IR·PR과 디지털 브랜딩을 맡아왔습니다. 자료를 정리하고 메시지를 만들고, 실제 결과물과 운영까지 이어가는 일을 해왔습니다.</p>
+          </div>
+          <div class="career-timeline">
+            <article class="timeline-item"><time>25.12 — 현재</time><div class="timeline-company"><strong>모바휠</strong><span class="company-industry">전자감지장치 제조업</span><span class="company-nature">음파 AI·센서 기반 도로안전 솔루션</span><p>Growth팀 · PR Manager<br>IR·PR · 디지털 브랜딩 · 대내외 커뮤니케이션</p></div></article>
+            <article class="timeline-item"><time>25.06 — 25.12</time><div class="timeline-company"><strong>미건라이프사이언스</strong><span class="company-industry">의료기기 제조업</span><span class="company-nature">개인용 의료기기·헬스케어</span><p>BX팀 · 대리<br>홈페이지 · IR·PR · 디지털 마케팅 · 디자인</p></div></article>
+            <article class="timeline-item"><time>18.02 — 24.12</time><div class="timeline-company"><strong>파멥신</strong><span class="company-industry">의학 및 약학 연구개발업</span><span class="company-nature">바이오의약품·항체 신약 연구개발</span><p>전략경영 · 기업홍보<br>홈페이지 · IR·PR · 디지털 채널 · 홍보 디자인 · 경영지원</p></div></article>
+          </div>
+
+          <div class="freelance-project">
+            <div class="freelance-label">FREELANCE PROJECT</div>
+            <div class="freelance-row">
+              <time>25.01 — 25.03</time>
+              <div>
+                <strong>마이링크</strong>
+                <span class="company-industry">응용 소프트웨어 개발 및 공급업</span>
+                <span class="company-nature">제조 IT·SaaS 솔루션</span>
+                <p>디지털 마케팅·콘텐츠 프로젝트<br>홈페이지 기획 · 전시·PR · 채널 운영 · 기업자료 제작</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="work-index" id="work" aria-labelledby="workTitle">
+        <div class="work-index-head reveal">
+          <span class="eyebrow">SELECTED WORK</span>
+          <h2 id="workTitle">목적에 맞게 기획하고,<br>결과물로 연결합니다.</h2>
+          <p>기업 커뮤니케이션 전반에서 직접 맡았던 주요 프로젝트입니다.</p>
+        </div>
+        <div class="work-layout">
+          <aside class="work-sidebar reveal" aria-label="작업 분야 상단 카테고리">
+            <span class="sidebar-label">WORK CATEGORY</span>
+            <div class="work-tabs" role="tablist" aria-label="작업 카테고리">
+              <button class="work-tab active" type="button" role="tab" aria-selected="true" data-work-target="ir"><span>01</span>전략·IR</button>
+              <button class="work-tab" type="button" role="tab" aria-selected="false" data-work-target="pr"><span>02</span>기업홍보·PR</button>
+              <button class="work-tab" type="button" role="tab" aria-selected="false" data-work-target="website"><span>03</span>웹·브랜딩</button>
+              <button class="work-tab" type="button" role="tab" aria-selected="false" data-work-target="digital"><span>04</span>디지털 채널</button>
+              <button class="work-tab" type="button" role="tab" aria-selected="false" data-work-target="design"><span>05</span>콘텐츠 디자인</button>
+              <button class="work-tab" type="button" role="tab" aria-selected="false" data-work-target="event"><span>06</span>전시·행사</button>
+              <button class="work-tab" type="button" role="tab" aria-selected="false" data-work-target="operations"><span>07</span>경영관리</button>
+            </div>
+          </aside>
+          <div class="work-stage" id="workStage" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section work-section" id="website" data-section>
+        <details class="work-accordion">
+          <summary><span class="accordion-no">03</span><div class="accordion-title"><h2>홈페이지·디지털 브랜딩</h2><span>WEBSITE · DIGITAL BRAND</span></div><p class="accordion-copy">기업과 제품 정보를 보기 쉽게 다시 정리하고, 홈페이지 구조와 화면을 직접 기획했습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="project-grid reveal">
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery website-link-gallery">
+              <section class="website-case-card">
+                <a class="website-thumb-slot" href="https://www.pharmabcine.com/" target="_blank" rel="noopener" aria-label="파멥신 운영 홈페이지 열기"><img src="https://image.thum.io/get/width/1200/crop/675/noanimate/https://www.pharmabcine.com/" alt="파멥신 홈페이지 첫 화면 미리보기" loading="lazy" decoding="async"></a>
+                <div class="website-case-meta"><span>FULL RENEWAL · IMWEB</span><h4>파멥신 홈페이지 전체 개편</h4><p>국·영문 기업·IR 정보를 다시 정리하고, 전체 페이지 구성과 모바일 화면까지 직접 기획·디자인했습니다.</p><dl class="website-case-facts"><div><dt>범위</dt><dd>전체 개편 · 국·영문 · 모바일 최적화</dd></div><div><dt>역할</dt><dd>기획 · 콘텐츠 구조 · UI 디자인 · 운영</dd></div><div><dt>환경</dt><dd>아임웹 기반</dd></div></dl><a class="website-live-link" href="https://www.pharmabcine.com/" target="_blank" rel="noopener"><strong>운영 홈페이지 확인하기</strong><span>↗</span></a></div>
+              </section>
+            </div>
+            <div class="project-info"><span>파멥신 · 18.02—20.02</span><h3>국·영문 홈페이지 전체 개편</h3><p>정보 구조·콘텐츠 재설계 · 브랜드 메시지·화면 기획 · UI 디자인·모바일 최적화 · 아임웹 구축·운영</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery website-link-gallery">
+              <section class="website-case-card">
+                <a class="website-thumb-slot" href="https://migunlife.co.kr/" target="_blank" rel="noopener" aria-label="미건라이프사이언스 운영 홈페이지 열기"><img src="https://image.thum.io/get/width/1200/crop/675/noanimate/https://migunlife.co.kr/" alt="미건라이프사이언스 홈페이지 첫 화면 미리보기" loading="lazy" decoding="async"></a>
+                <div class="website-case-meta"><span>FULL RENEWAL · GABIA</span><h4>미건라이프사이언스 홈페이지 전체 개편</h4><p>기업·제품·IR 정보를 목적별로 나누고, 필요한 정보를 빠르게 찾을 수 있도록 메뉴와 페이지 구조를 다시 짰습니다.</p><dl class="website-case-facts"><div><dt>범위</dt><dd>전체 개편 · 기업·제품·IR 콘텐츠</dd></div><div><dt>역할</dt><dd>기획 · 화면 구성 · 콘텐츠 디자인</dd></div><div><dt>환경</dt><dd>가비아 기반</dd></div></dl><a class="website-live-link" href="https://migunlife.co.kr/" target="_blank" rel="noopener"><strong>운영 홈페이지 확인하기</strong><span>↗</span></a></div>
+              </section>
+            </div>
+            <div class="project-info"><span>미건라이프사이언스 · 25.06—25.12</span><h3>기업·제품·IR 홈페이지 전체 개편</h3><p>정보 구조·메뉴 재설계 · 페이지 구성·콘텐츠 기획 · UI 디자인 · 가비아 기반 구축</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery website-link-gallery">
+              <section class="website-case-card">
+                <a class="website-thumb-slot" href="https://my-link.co.kr/kr" target="_blank" rel="noopener" aria-label="마이링크 운영 홈페이지 열기"><img src="https://image.thum.io/get/width/1200/crop/675/noanimate/https://my-link.co.kr/kr" alt="마이링크 홈페이지 첫 화면 미리보기" loading="lazy" decoding="async"></a>
+                <div class="website-case-meta"><span>FULL PLANNING · IN-HOUSE BUILD</span><h4>마이링크 홈페이지 전체 기획</h4><p>기업과 서비스 정보를 기준으로 메뉴와 화면 구성을 잡고, UX/UI 디자인과 개발 협업을 진행했습니다.</p><dl class="website-case-facts"><div><dt>범위</dt><dd>전체 기획 · 메뉴·콘텐츠·화면 설계</dd></div><div><dt>역할</dt><dd>웹 기획 · 요구사항 정의 · 협업 조율</dd></div><div><dt>환경</dt><dd>자체 구축 · UX/UI 디자인 협업</dd></div></dl><a class="website-live-link" href="https://my-link.co.kr/kr" target="_blank" rel="noopener"><strong>운영 홈페이지 확인하기</strong><span>↗</span></a></div>
+              </section>
+            </div>
+            <div class="project-info"><span>마이링크 · 25.01—25.03</span><h3>기업 홈페이지 전체 기획</h3><p>사이트 목표·메뉴·콘텐츠 구조·화면 요구사항 설계 · UX/UI 디자이너·개발 담당자 협업</p><i class="project-arrow">↗</i></div>
+          </article>
+          </div></div>
+        </details>
+      </section>
+
+      <section class="section white work-section work-active" id="ir" data-section>
+        <details class="work-accordion" open>
+          <summary><span class="accordion-no">01</span><div class="accordion-title"><h2>전략기획·IR</h2><span>STRATEGY · INVESTOR RELATIONS</span></div><p class="accordion-copy">IR Deck, 회사소개서, 발표자료 등 기업과 사업을 설명하는 자료를 만들었습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="project-grid reveal">
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group full"><div class="series-head"><span>SERIES A IR DECK</span><strong>Series A 투자유치 IR Deck</strong><small>표지 + 내지 3P</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119476122168976.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119476122168976.png" alt="모바휠 Series A 투자유치 IR Deck 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787030010040302736.png?ec6cnw6x" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787030010040302736.png?ec6cnw6x" alt="모바휠 Series A 투자유치 IR Deck 내지 첫 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787030033520171128.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787030033520171128.png" alt="모바휠 Series A 투자유치 IR Deck 내지 두 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787030045482701884.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787030045482701884.png" alt="모바휠 Series A 투자유치 IR Deck 내지 세 번째" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="resource-directory">
+                <div class="resource-directory-head"><div><span>INVESTOR COMMUNICATION</span><h4>Investor Update</h4></div><p>분기별 사업·기술·IR 소식을 정리해 투자자용 업데이트 콘텐츠로 만들었습니다.</p></div>
+                <div class="resource-block">
+                  <div class="resource-grid single">
+                    <a class="resource-card" href="https://stib.ee/i6cM" target="_blank" rel="noopener"><span>2026 · Q2</span><strong>Investor Update | 2026 Q2</strong><small>분기 사업·기술·IR 주요 소식</small><i aria-hidden="true">↗</i></a>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="project-info"><span>모바휠 · 25.12—현재</span><h3>투자유치 IR Deck·Investor Update 제작</h3><p>Series A 투자 스토리 구성 · IR Deck 제작 · 분기 사업 현황 업데이트 · 버전 관리</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group"><div class="series-head"><span>EYE CONFERENCE</span><strong>안구 컨퍼런스 학회 발표자료</strong><small>표지 + 국문 내지</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787120887009527807.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787120887009527807.png" alt="파멥신 안구 컨퍼런스 학회 발표자료 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787120999400284711.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787120999400284711.png" alt="파멥신 안구 컨퍼런스 학회 발표자료 국문 내지" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group full"><div class="series-head"><span>IR DECK</span><strong>기업 IR Deck</strong><small>표지 + 내지 2P</small></div><div class="series-images three">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787121358137433459.jpeg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787121358137433459.jpeg" alt="파멥신 기업 IR Deck 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787121381268029154.jpeg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787121381268029154.jpeg" alt="파멥신 기업 IR Deck 내지 첫 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787121405309714634.jpeg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787121405309714634.jpeg" alt="파멥신 기업 IR Deck 내지 두 번째" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>파멥신 · 18—24</span><h3>기업 IR Deck·학회 발표자료 제작</h3><p>기업·파이프라인 자료 정리 · IR Deck 제작 · 학회 발표자료 국문화·편집</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group full"><div class="series-head"><span>IR DECK</span><strong>기업·사업 IR Deck</strong><small>표지 + 내지</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119500342124641.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119500342124641.png" alt="미건라이프사이언스 IR Deck 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119517583869936.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119517583869936.png" alt="미건라이프사이언스 IR Deck 내지" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>미건라이프사이언스 · 25.06—25.12</span><h3>기업 IR Deck 제작</h3><p>기업·사업·제품 자료 정리 · 페이지 구성 · 문구·디자인</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group full"><div class="series-head"><span>COMPANY PROFILE</span><strong>회사소개서</strong><small>표지 + 내지</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787120592105738457.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787120592105738457.png" alt="마이링크 회사소개서 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787120611860053537.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787120611860053537.png" alt="마이링크 회사소개서 내지" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>마이링크 · 25.01—25.03</span><h3>기업·서비스 회사소개서 제작</h3><p>기업·서비스 자료 정리 · 페이지 구성 · 문구 작성 · 표지·내지 디자인</p><i class="project-arrow">↗</i></div>
+          </article>
+          </div></div>
+        </details>
+      </section>
+
+      <section class="section work-section" id="pr" data-section>
+        <details class="work-accordion">
+          <summary><span class="accordion-no">02</span><div class="accordion-title"><h2>기업홍보·PR</h2><span>PUBLIC RELATIONS · COMMUNICATION</span></div><p class="accordion-copy">기술과 사업 이슈를 보도자료로 만들고, 배포부터 취재 대응까지 맡았습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="project-grid reveal">
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery press-link-gallery">
+              <a class="press-link-card" href="https://search.naver.com/search.naver?ssc=tab.news.all&amp;query=%EB%AA%A8%EB%B0%94%ED%9C%A0&amp;sm=tab_opt&amp;sort=0&amp;photo=0&amp;field=0&amp;pd=3&amp;ds=2025.12.01&amp;de=&amp;docid=&amp;qdt=0&amp;related=0&amp;mynews=0&amp;office_type=0&amp;office_section_code=0&amp;news_office_checked=&amp;nso=so%3Ar%2Cp%3Afrom20251201to&amp;is_sug_officeid=0&amp;office_category=0&amp;service_area=0" target="_blank" rel="noopener" aria-label="네이버 뉴스에서 모바휠 보도 결과 전체 보기">
+                <div class="press-link-copy">
+                  <span>PRESS COVERAGE ARCHIVE</span>
+                  <h4>모바휠 관련 보도 결과</h4>
+                  <p>기술, 실증, 행사, 협약, 수상 관련 보도자료의 언론 노출 결과입니다.</p>
+                </div>
+                <dl class="press-link-options">
+                  <div><dt>검색어</dt><dd>모바휠</dd></div>
+                  <div><dt>기간</dt><dd>25.12.01 — ONGOING</dd></div>
+                  <div><dt>범위</dt><dd>네이버 뉴스 전체</dd></div>
+                  <div><dt>정렬</dt><dd>관련도순</dd></div>
+                </dl>
+                <strong class="press-link-action">보도 결과 전체 보기 <span aria-hidden="true">↗</span></strong>
+              </a>
+            </div>
+            <div class="project-info"><span>모바휠 · 25.12—현재</span><h3>기술·제품·실증 보도자료 작성·배포</h3><p>보도자료 주제 발굴·작성·배포 · 취재자료 제공 · 언론 문의 대응</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery press-link-gallery">
+              <a class="press-link-card" href="https://search.naver.com/search.naver?ssc=tab.news.all&amp;query=%EB%AF%B8%EA%B1%B4%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4&amp;sm=tab_opt&amp;sort=1&amp;photo=0&amp;field=0&amp;pd=3&amp;ds=2025.06.01&amp;de=2025.12.31&amp;docid=&amp;qdt=0&amp;related=0&amp;mynews=0&amp;office_type=0&amp;office_section_code=0&amp;news_office_checked=&amp;nso=so%3Add%2Cp%3Afrom20250601to20251231&amp;is_sug_officeid=0&amp;office_category=0&amp;service_area=0" target="_blank" rel="noopener" aria-label="네이버 뉴스에서 미건라이프사이언스 보도 결과 전체 보기">
+                <div class="press-link-copy">
+                  <span>PRESS COVERAGE ARCHIVE</span>
+                  <h4>미건라이프사이언스 관련 보도 결과</h4>
+                  <p>기업과 사업 관련 보도자료의 언론 노출 결과입니다.</p>
+                </div>
+                <dl class="press-link-options">
+                  <div><dt>검색어</dt><dd>미건라이프사이언스</dd></div>
+                  <div><dt>기간</dt><dd>25.06.01 — 25.12.31</dd></div>
+                  <div><dt>범위</dt><dd>네이버 뉴스 전체</dd></div>
+                  <div><dt>정렬</dt><dd>최신순</dd></div>
+                </dl>
+                <strong class="press-link-action">보도 결과 전체 보기 <span aria-hidden="true">↗</span></strong>
+              </a>
+            </div>
+            <div class="project-info"><span>미건라이프사이언스 · 25.06—25.12</span><h3>기업·사업·제품 보도자료 작성·배포</h3><p>보도자료 기획·작성·배포 · 기업·제품 취재자료 제공 · 언론 문의 대응</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery press-link-gallery">
+              <a class="press-link-card" href="https://search.naver.com/search.naver?ssc=tab.news.all&amp;query=(%EC%A3%BC)%EB%A7%88%EC%9D%B4%EB%A7%81%ED%81%AC&amp;sm=tab_opt&amp;sort=0&amp;photo=0&amp;field=0&amp;pd=3&amp;ds=2025.01.01&amp;de=2025.03.31&amp;docid=&amp;qdt=0&amp;related=0&amp;mynews=0&amp;office_type=0&amp;office_section_code=0&amp;news_office_checked=&amp;nso=so%3Ar%2Cp%3Afrom20250101to20250331&amp;is_sug_officeid=0&amp;office_category=0&amp;service_area=0" target="_blank" rel="noopener" aria-label="네이버 뉴스에서 마이링크 보도 결과 전체 보기">
+                <div class="press-link-copy">
+                  <span>PRESS COVERAGE ARCHIVE</span>
+                  <h4>마이링크 관련 보도 결과</h4>
+                  <p>기업과 전시회 관련 보도자료의 언론 노출 결과입니다.</p>
+                </div>
+                <dl class="press-link-options">
+                  <div><dt>검색어</dt><dd>(주)마이링크</dd></div>
+                  <div><dt>기간</dt><dd>25.01.01 — 25.03.31</dd></div>
+                  <div><dt>범위</dt><dd>네이버 뉴스 전체</dd></div>
+                  <div><dt>정렬</dt><dd>관련도순</dd></div>
+                </dl>
+                <strong class="press-link-action">보도 결과 전체 보기 <span aria-hidden="true">↗</span></strong>
+              </a>
+            </div>
+            <div class="project-info"><span>마이링크 · 25.01—25.03</span><h3>기업·전시회 보도자료 작성·배포</h3><p>보도자료 기획·작성·배포 · 전시회 취재자료 정리 · 언론 문의 대응</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery press-link-gallery">
+              <a class="press-link-card" href="https://search.naver.com/search.naver?ssc=tab.news.all&amp;query=%ED%8C%8C%EB%A9%A5%EC%8B%A0&amp;sm=tab_opt&amp;sort=1&amp;photo=4&amp;field=0&amp;pd=3&amp;ds=2018.02.05&amp;de=2024.12.31&amp;docid=&amp;qdt=0&amp;related=0&amp;mynews=0&amp;office_type=0&amp;office_section_code=0&amp;news_office_checked=&amp;nso=so%3Add%2Cp%3Afrom20180205to20241231&amp;is_sug_officeid=0&amp;office_category=0&amp;service_area=0" target="_blank" rel="noopener" aria-label="네이버 뉴스에서 파멥신 보도 결과 전체 보기">
+                <div class="press-link-copy">
+                  <span>PRESS COVERAGE ARCHIVE</span>
+                  <h4>파멥신 관련 보도 결과</h4>
+                  <p>재직 기간에 작성한 국·영문 보도자료의 언론 노출 결과입니다.</p>
+                </div>
+                <dl class="press-link-options">
+                  <div><dt>검색어</dt><dd>파멥신</dd></div>
+                  <div><dt>기간</dt><dd>18.02.05 — 24.12.31</dd></div>
+                  <div><dt>범위</dt><dd>네이버 뉴스 전체</dd></div>
+                  <div><dt>정렬</dt><dd>최신순</dd></div>
+                </dl>
+                <strong class="press-link-action">보도 결과 전체 보기 <span aria-hidden="true">↗</span></strong>
+              </a>
+            </div>
+            <div class="project-info"><span>파멥신 · 18.02—24.12</span><h3>연구개발·임상·사업 보도자료 작성·배포</h3><p>국·영문 보도자료 작성·배포 · 연구개발·IR 취재자료 제공 · 언론 문의 대응</p><i class="project-arrow">↗</i></div>
+          </article>
+          </div></div>
+        </details>
+      </section>
+
+      <section class="section dark work-section" id="digital" data-section>
+        <details class="work-accordion">
+          <summary><span class="accordion-no">04</span><div class="accordion-title"><h2>디지털 마케팅·채널 운영</h2><span>DIGITAL MARKETING · CHANNEL</span></div><p class="accordion-copy">회사별 채널을 직접 만들고 운영했습니다. LinkedIn, Facebook, YouTube, IR 블로그의 콘텐츠도 함께 제작했습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="project-grid reveal">
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery channel-link-gallery">
+              <section class="channel-directory">
+                <div class="channel-directory-head"><div><span>OFFICIAL CHANNEL DIRECTORY</span><h4>모바휠 공식 LinkedIn</h4></div><p>기술, 제품, 실증, 행사, 조직문화 콘텐츠를 직접 만들고 발행했습니다.</p></div>
+                <div class="channel-link-grid single">
+                  <a class="channel-link-card" href="https://www.linkedin.com/company/mvw/posts/?feedView=all&amp;viewAsMember=true" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113632294466321.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>LINKEDIN · 35+ CONTENTS</span><strong>모바휠 공식 기업 채널</strong><p>채널 운영 · 기업 콘텐츠 기획·제작 · 발행·성과 관리</p><i aria-hidden="true">↗</i></a>
+                </div>
+              </section>
+            </div>
+            <div class="project-info"><span>모바휠 · 25.12—현재</span><h3>공식 LinkedIn 운영·콘텐츠 제작</h3><p>LinkedIn 운영 · 기술·실증·행사·조직문화 콘텐츠 35개 이상 제작·발행</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery channel-link-gallery">
+              <section class="channel-directory">
+                <div class="channel-directory-head"><div><span>OFFICIAL CHANNEL DIRECTORY</span><h4>파멥신 공식 디지털 채널</h4></div><p>국내외 주주와 이해관계자에게 연구개발, 임상, 기업 소식을 전하기 위해 채널을 개설하고 운영했습니다.</p></div>
+                <div class="channel-link-grid">
+                  <a class="channel-link-card" href="https://www.linkedin.com/company/pharmabcine-inc/posts/?feedView=all" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113632294466321.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>LINKEDIN</span><strong>국내외 주주 대상 채널</strong><p>채널 개설·운영 · 기업·연구개발 콘텐츠 제작</p><i aria-hidden="true">↗</i></a>
+                  <a class="channel-link-card" href="https://www.facebook.com/pharmabcine" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113639870044651.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>FACEBOOK</span><strong>국내 주주 대상 채널</strong><p>채널 개설·운영 · 기업 소식과 홍보 콘텐츠 제작</p><i aria-hidden="true">↗</i></a>
+                  <a class="channel-link-card" href="https://www.youtube.com/channel/UC0jaVBJDy1gmK8ZOMFl1EfQ" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113636117616387.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>YOUTUBE</span><strong>기업 영상 채널</strong><p>채널 개설·운영 · 영상 편집과 썸네일 콘텐츠 제작</p><i aria-hidden="true">↗</i></a>
+                </div>
+              </section>
+            </div>
+            <div class="project-info"><span>파멥신 · 20—24</span><h3>LinkedIn·Facebook·YouTube 개설·운영</h3><p>LinkedIn·Facebook·YouTube 개설·운영 · 기업·연구개발·IR 콘텐츠 제작</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery channel-link-gallery">
+              <section class="channel-directory">
+                <div class="channel-directory-head"><div><span>OFFICIAL CHANNEL DIRECTORY</span><h4>미건라이프사이언스 공식 채널</h4></div><p>기업·IR 소식을 꾸준히 전달하기 위해 LinkedIn과 IR 블로그를 개설하고, YouTube 콘텐츠를 제작했습니다.</p></div>
+                <div class="channel-link-grid">
+                  <a class="channel-link-card" href="https://www.linkedin.com/company/migunlifescience/posts/?feedView=all" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113632294466321.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>LINKEDIN</span><strong>기업 공식 채널</strong><p>채널 개설·운영 · 기업·사업 콘텐츠 발행</p><i aria-hidden="true">↗</i></a>
+                  <a class="channel-link-card" href="https://www.youtube.com/@migunlifeofficial" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113636117616387.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>YOUTUBE</span><strong>공식 영상 채널</strong><p>채널 운영 · 영상·썸네일 콘텐츠 제작</p><i aria-hidden="true">↗</i></a>
+                  <a class="channel-link-card" href="https://blog.naver.com/migun_ir" target="_blank" rel="noopener"><img class="channel-platform-logo" src="https://img2.stibee.com/446826_3551406_1787113715953425334.png" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>IR BLOG</span><strong>투자자 정보 채널</strong><p>IR 블로그 개설·운영 · 기업·투자정보 콘텐츠 구성</p><i aria-hidden="true">↗</i></a>
+                </div>
+              </section>
+            </div>
+            <div class="project-info"><span>미건라이프사이언스 · 25.06—25.12</span><h3>LinkedIn·YouTube·IR 블로그 운영</h3><p>LinkedIn·IR 블로그 개설 · YouTube 운영 · 기업·제품·IR 콘텐츠 제작</p><i class="project-arrow">↗</i></div>
+          </article>
+          </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section white work-section" id="design" data-section>
+        <details class="work-accordion">
+          <summary><span class="accordion-no">05</span><div class="accordion-title"><h2>홍보 콘텐츠·디자인</h2><span>CONTENT · VISUAL DESIGN</span></div><p class="accordion-copy">로고부터 브로슈어, 포스터, 카드뉴스, 영상, 뉴스레터까지 필요한 홍보물을 직접 만들었습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="project-grid reveal">
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="resource-directory">
+                <div class="resource-directory-head"><div><span>INTERNAL NEWSLETTER</span><h4>월간 인사이트</h4></div><p>월별 사업, 기술, 행사, 조직 소식을 모아 사내 뉴스레터로 만들고 직접 발행했습니다.</p></div>
+                <div class="resource-block">
+                  <div class="resource-grid">
+                    <a class="resource-card" href="https://stib.ee/C04N" target="_blank" rel="noopener"><span>2026 · 03</span><strong>3월 월간 인사이트</strong><small>뉴스레터 보기</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stibee.com/api/v1.0/emails/share/EdGKV0RH7T3B0e7o91cYr1sIXrEm3Jc" target="_blank" rel="noopener"><span>2026 · 04</span><strong>4월 월간 인사이트</strong><small>뉴스레터 보기</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stibee.com/api/v1.0/emails/share/8rOsixe_0A0HptrQ6_mS3RxhabuBOpM" target="_blank" rel="noopener"><span>2026 · 05</span><strong>5월 월간 인사이트</strong><small>뉴스레터 보기</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stibee.com/api/v1.0/emails/share/x-Wj9kMvaKNBRwYl8kzEJTCjWeCO-Y4" target="_blank" rel="noopener"><span>2026 · 06</span><strong>6월 월간 인사이트</strong><small>뉴스레터 보기</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stibee.com/api/v1.0/emails/share/LZEN3kXCvjSIUejfKZKHljRlDQr2-9s" target="_blank" rel="noopener"><span>2026 · 07</span><strong>7월 월간 인사이트</strong><small>뉴스레터 보기</small><i aria-hidden="true">↗</i></a>
+                    <div class="resource-card pending" aria-label="8월 월간 인사이트 발행 예정"><span>2026 · 08</span><strong>8월 월간 인사이트</strong><small>발행 예정 · 링크 추가 공간</small><i aria-hidden="true">•••</i></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="project-info"><span>모바휠 · 26.03—현재</span><h3>사내 뉴스레터 ‘월간 인사이트’ 제작·발행</h3><p>월별 사내 소식 취합 · 문구·디자인 · HTML 제작 · 뉴스레터 발행</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="resource-directory">
+                <div class="resource-directory-head"><div><span>QR-BASED PROMOTION</span><h4>QR 연계 홍보물</h4></div><p>전시 현장에서 바로 확인할 수 있도록 행사별 랜딩 페이지와 국·영문 QR 회사소개서를 만들었습니다.</p></div>
+                <div class="resource-block">
+                  <div class="resource-block-head"><strong>전시회 QR 랜딩 페이지</strong><span>3 LANDING PAGES</span></div>
+                  <div class="resource-grid">
+                    <a class="resource-card" href="https://stib.ee/FymL" target="_blank" rel="noopener"><span>EXHIBITION</span><strong>코리아 나라장터 엑스포</strong><small>행사 맞춤형 QR 랜딩 페이지</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stib.ee/uE4M" target="_blank" rel="noopener"><span>EXHIBITION</span><strong>넥스트라이즈</strong><small>행사 맞춤형 QR 랜딩 페이지</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stib.ee/lPQM" target="_blank" rel="noopener"><span>EXHIBITION</span><strong>딥테크 성과교류회</strong><small>행사 맞춤형 QR 랜딩 페이지</small><i aria-hidden="true">↗</i></a>
+                  </div>
+                </div>
+                <div class="resource-block">
+                  <div class="resource-block-head"><strong>QR 명함형 회사소개서</strong><span>KR · EN</span></div>
+                  <div class="resource-grid">
+                    <a class="resource-card" href="https://stib.ee/naQM" target="_blank" rel="noopener"><span>KOREAN</span><strong>국문 회사소개서</strong><small>QR 명함 연계형 기업 소개 콘텐츠</small><i aria-hidden="true">↗</i></a>
+                    <a class="resource-card" href="https://stib.ee/GqUM" target="_blank" rel="noopener"><span>ENGLISH</span><strong>영문 회사소개서</strong><small>QR 명함 연계형 기업 소개 콘텐츠</small><i aria-hidden="true">↗</i></a>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="project-info"><span>모바휠 · 26</span><h3>전시회 QR 랜딩·명함형 회사소개서 제작</h3><p>전시회별 QR 랜딩 페이지 HTML 제작 · 국·영문 QR 회사소개서 제작</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group"><div class="series-head"><span>EXHIBITION BROCHURE</span><strong>박람회 맞춤형 홍보 브로슈어</strong><small>표지 + 내지</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119621328853391.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119621328853391.jpg" alt="모바휠 특정 박람회용 홍보 브로슈어 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119641201244145.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119641201244145.jpg" alt="모바휠 특정 박람회용 홍보 브로슈어 내지" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group"><div class="series-head"><span>TRI-FOLD LEAFLET</span><strong>기업·솔루션 3단 리플릿</strong><small>인쇄 홍보물</small></div><div class="series-images single">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119737185559498.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119737185559498.jpg" alt="모바휠 기업·솔루션 홍보용 3단 리플릿" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group full"><div class="series-head"><span>NEXTRISE POSTER</span><strong>넥스트라이즈 전시 홍보 포스터</strong><small>3 POSTERS</small></div><div class="series-images three">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119808239712496.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119808239712496.jpg" alt="모바휠 넥스트라이즈 홍보 포스터 첫 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119835837068239.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119835837068239.jpg" alt="모바휠 넥스트라이즈 홍보 포스터 두 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787119847732504727.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787119847732504727.jpg" alt="모바휠 넥스트라이즈 홍보 포스터 세 번째" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>모바휠 · 25.12—현재</span><h3>전시회 브로슈어·리플릿·포스터 제작</h3><p>박람회용 브로슈어·3단 리플릿·포스터 디자인 · 인쇄 편집</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group"><div class="series-head"><span>BRAND IDENTITY</span><strong>파멥신·윈칼 로고</strong><small>2 LOGOS</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094161788325801.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094161788325801.png" alt="파멥신 브랜드 로고 리뉴얼" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094183053421331.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094183053421331.png" alt="윈칼 바이오 브랜드 로고 구축" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group"><div class="series-head"><span>EVENT BANNER</span><strong>컨퍼런스·주주총회 배너</strong><small>2 BANNERS</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094217815059660.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094217815059660.jpg" alt="바이오테크코리아 컨퍼런스 홍보 배너" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094245075408515.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094245075408515.jpg" alt="파멥신 주주총회 홍보 배너" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group"><div class="series-head"><span>TECH BROCHURE</span><strong>기업 기술 홍보 브로슈어</strong><small>3 PAGES</small></div><div class="series-images three">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094260761246599.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094260761246599.jpg" alt="파멥신 기업 기술 홍보 브로슈어 첫 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094280444907404.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094280444907404.jpg" alt="파멥신 기업 기술 홍보 브로슈어 두 번째 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094303705686607.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094303705686607.jpg" alt="파멥신 기업 기술 홍보 브로슈어 두 번째 내지" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group"><div class="series-head"><span>ACADEMIC POSTER</span><strong>학회 발표용 포스터</strong><small>1 POSTER</small></div><div class="series-images single">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094323776891521.jpg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094323776891521.jpg" alt="파멥신 학회 발표용 포스터" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group full"><div class="series-head"><span>QR PROMOTION</span><strong>QR 연계형 바이오 컨퍼런스 홍보물·외부 홍보용 명함</strong><small>LANDING + PRINT</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094401935920599.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094401935920599.png" alt="QR코드로 연결되는 파멥신 바이오 컨퍼런스 디지털 홍보물" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094447380856481.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094447380856481.png" alt="QR코드를 적용한 파멥신 외부 홍보용 명함" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>파멥신 · 18—24</span><h3>브랜드 아이덴티티·기업 홍보물 제작</h3><p>로고 · 기술 브로슈어 · 배너 · 학회 포스터 · QR 홍보물·명함 디자인</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group"><div class="series-head"><span>LINKEDIN</span><strong>글로벌 기업·연구 콘텐츠</strong><small>3 CONTENTS</small></div><div class="series-images three">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094500758268827.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094500758268827.png" alt="파멥신 링크드인 콘텐츠 첫 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094523026080568.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094523026080568.png" alt="파멥신 링크드인 콘텐츠 두 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094538961623666.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094538961623666.png" alt="파멥신 링크드인 콘텐츠 세 번째" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group"><div class="series-head"><span>FACEBOOK</span><strong>국내 주주 대상 콘텐츠</strong><small>3 CONTENTS</small></div><div class="series-images three">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094893467180752.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094893467180752.png" alt="파멥신 페이스북 콘텐츠 첫 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094916300318639.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094916300318639.png" alt="파멥신 페이스북 콘텐츠 두 번째" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787094996827871378.jpeg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787094996827871378.jpeg" alt="파멥신 페이스북 콘텐츠 세 번째" loading="lazy" decoding="async"></a>
+              </div></section>
+              <section class="series-group full"><div class="series-head"><span>YOUTUBE</span><strong>영상 편집·썸네일 디자인</strong><small>VIDEO CONTENT</small></div><div class="series-images single">
+                <a class="series-image" href="https://img2.stibee.com/446826_3550399_1787095010684797051.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3550399_1787095010684797051.png" alt="파멥신 유튜브 영상과 썸네일 콘텐츠" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>파멥신 · 20—24</span><h3>SNS 카드뉴스·YouTube 영상 콘텐츠 제작</h3><p>LinkedIn·Facebook 카드뉴스 디자인 · YouTube 영상 편집 · 썸네일 제작</p><i class="project-arrow">↗</i></div>
+          </article>
+          <article class="project-card wide portfolio-project">
+            <div class="series-gallery">
+              <section class="series-group full"><div class="series-head"><span>PRODUCT CATALOG</span><strong>제품 카탈로그</strong><small>표지 + 내지</small></div><div class="series-images">
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787120219542211086.png" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787120219542211086.png" alt="미건라이프사이언스 제품 카탈로그 표지" loading="lazy" decoding="async"></a>
+                <a class="series-image" href="https://img2.stibee.com/446826_3547850_1787120308029006885.jpeg" target="_blank" rel="noopener"><img src="https://img2.stibee.com/446826_3547850_1787120308029006885.jpeg" alt="미건라이프사이언스 제품 카탈로그 내지" loading="lazy" decoding="async"></a>
+              </div></section>
+            </div>
+            <div class="project-info"><span>미건라이프사이언스 · 25.06—25.12</span><h3>제품 카탈로그 기획·제작</h3><p>제품군·사양 정리 · 페이지 구성 · 표지·내지 디자인 · 인쇄 편집</p><i class="project-arrow">↗</i></div>
+          </article>
+          </div></div>
+        </details>
+      </section>
+
+      <section class="section work-section" id="event" data-section>
+        <details class="work-accordion">
+          <summary><span class="accordion-no">06</span><div class="accordion-title"><h2>전시·행사·대외협력</h2><span>EXHIBITION · EVENT · PARTNERSHIP</span></div><p class="accordion-copy">국내외 전시회와 학회, 실증·협약 행사의 준비부터 현장 운영, 사후 홍보까지 맡았습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="project-grid reveal">
+          <article class="project-card wide"><div class="placeholder"><strong class="placeholder-code">F01</strong><small>전시 대표 이미지 · 16:9 권장</small></div><div class="project-info"><span>모바휠·마이링크</span><h3>국내외 전시회·학회 참가 운영</h3><p>참가 신청 · 일정 관리 · 부스·홍보물 준비 · 주최기관 대응 · 현장 운영</p><i class="project-arrow">↗</i></div></article>
+          <article class="project-card"><div class="placeholder"><strong class="placeholder-code">F02</strong><small>현장 이미지</small></div><div class="project-info"><span>모바휠 · 25.12—현재</span><h3>실증·협약·대외행사 기획·운영</h3><p>일정·참석자 조율 · 발표·협약 자료 준비 · 유관기관 대응 · 현장 진행</p><i class="project-arrow">↗</i></div></article>
+          <article class="project-card"><div class="placeholder"><strong class="placeholder-code">F03</strong><small>현장 이미지</small></div><div class="project-info"><span>모바휠 · 25.12—현재</span><h3>타운홀·인턴십·웰컴 프로그램 운영</h3><p>사내 프로그램 준비 · 일정·참여자 안내 · 운영자료 제작 · 현장 진행</p><i class="project-arrow">↗</i></div></article>
+          </div></div>
+        </details>
+      </section>
+
+      <section class="section white work-section" id="operations" data-section>
+        <details class="work-accordion">
+          <summary><span class="accordion-no">07</span><div class="accordion-title"><h2>경영관리·인사운영</h2><span>BUSINESS OPERATIONS · HR ADMINISTRATION</span></div><p class="accordion-copy">주주총회, 기업 인증, 계약 문서, 정부과제, 연차·근태 등 회사 운영에 필요한 실무를 함께 맡았습니다.</p><span class="accordion-toggle" aria-hidden="true"></span></summary>
+          <div class="accordion-panel"><div class="document-grid reveal">
+            <article class="document-card"><span>REPORTING</span><h3>경영·사업보고서 작성·제출 관리</h3><p>부서별 자료 취합 · 보고서·대외 제출문서 작성 · 제출 일정·버전·이력 관리</p></article>
+            <article class="document-card"><span>SHAREHOLDER MEETING</span><h3>정기·임시주주총회 준비·진행</h3><p>소집·의결 관련 문서 준비 · 주주 안내·일정 관리 · 주총·임총 현장 진행 · 의사록·결과 문서 관리</p></article>
+            <article class="document-card"><span>R&D CENTER</span><h3>기업부설연구소 신고·변경 관리</h3><p>신규·변경 신고자료 준비 · 연구인력 현황·기술인력 이력 관리 · 증빙문서 작성·보관</p></article>
+            <article class="document-card"><span>CERTIFICATION</span><h3>벤처기업·이노비즈 인증·갱신 관리</h3><p>인증 신청·갱신 일정 관리 · 증빙자료 취합·작성 · 기관 제출·보완 대응</p></article>
+            <article class="document-card"><span>CONTRACT</span><h3>계약서 대장·공용문서 관리</h3><p>계약서 분류·대장 업데이트 · 원본·사본 이력 관리 · 사내 공용문서 아카이빙</p></article>
+            <article class="document-card"><span>GOVERNMENT PROJECT</span><h3>정부지원과제 신청·보고자료 작성</h3><p>사업기획서 작성 지원 · 신청·협약·중간·결과보고 자료 취합·제출</p></article>
+            <article class="document-card"><span>HR & GENERAL AFFAIRS</span><h3>연차·근태·인사 운영 관리</h3><p>직원별 연차 부여·사용 현황 관리 · 근태·인사자료 정리 · 채용·입퇴사 실무 지원</p></article>
+          </div></div>
+        </details>
+      </section>
+
+      
+      <section class="contact simple-contact" id="contact" data-section>
+        <div class="simple-contact-inner">
+          <div class="simple-contact-brand">
+            <strong>JINA KIM</strong>
+            <span>PR · IR · DIGITAL COMMUNICATION</span>
+          </div>
+          <div class="simple-contact-links">
+            <a href="mailto:ggnnkk08@gmail.com" aria-label="김지나에게 이메일 보내기">EMAIL ↗</a>
+            <a href="tel:01058071488" aria-label="김지나에게 전화하기">PHONE ↗</a>
+          </div>
+        </div>
+        <footer class="simple-footer">
+          <span>© 2026 KIM JINA</span>
+          <span>PORTFOLIO</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const topbar = document.getElementById("topbar");
+    const navToggle = document.getElementById("navToggle");
+    const workMenu = document.getElementById("workMenu");
+    const workTrigger = document.getElementById("workTrigger");
+    const navLinks = Array.from(document.querySelectorAll("[data-nav]"));
+    const workIds = ["ir", "pr", "website", "digital", "design", "event", "operations"];
+    const workSectionIds = new Set(workIds);
+    const workSections = workIds.map(id => document.getElementById(id)).filter(Boolean);
+    const workTabs = Array.from(document.querySelectorAll("[data-work-target]"));
+    const workIndex = document.getElementById("work");
+    const workStage = document.getElementById("workStage");
+    workSections.forEach(section => {
+      if (workStage) workStage.appendChild(section);
+    });
+
+    const companyTimeline = ["모바휠", "미건라이프사이언스", "마이링크", "파멥신"];
+    document.querySelectorAll(".project-grid").forEach(grid => {
+      const cards = Array.from(grid.querySelectorAll(":scope > .project-card"));
+      const rank = card => {
+        const companyText = card.querySelector(".project-info span")?.textContent || "";
+        const index = companyTimeline.findIndex(company => companyText.includes(company));
+        return index < 0 ? companyTimeline.length : index;
+      };
+      cards.sort((a, b) => rank(a) - rank(b)).forEach(card => grid.appendChild(card));
+    });
+
+    document.querySelectorAll(".project-card").forEach(card => {
+      const info = card.querySelector(".project-info");
+      const gallery = card.querySelector(".series-gallery");
+      if (!info) return;
+
+      const fold = document.createElement("details");
+      fold.className = gallery ? "portfolio-fold has-gallery" : "portfolio-fold text-only";
+
+      const summary = document.createElement("summary");
+      const companyGroup = document.createElement("div");
+      companyGroup.className = "fold-company-group";
+      const companyMeta = info.querySelector("span")?.textContent?.trim() || "PROJECT";
+      const metaDivider = " · ";
+      const dividerIndex = companyMeta.indexOf(metaDivider);
+      const companyName = dividerIndex > -1 ? companyMeta.slice(0, dividerIndex) : companyMeta;
+      const projectPeriod = dividerIndex > -1 ? companyMeta.slice(dividerIndex + metaDivider.length) : "";
+      const company = document.createElement("span");
+      company.className = "fold-company";
+      company.textContent = companyName;
+      companyGroup.appendChild(company);
+      if (projectPeriod) {
+        const period = document.createElement("span");
+        period.className = "fold-period";
+        period.textContent = projectPeriod;
+        companyGroup.appendChild(period);
+      }
+      const kind = document.createElement("span");
+      kind.className = "fold-kind";
+      kind.textContent = card.querySelector(".channel-link-gallery") ? "운영 채널 펼쳐보기" : gallery ? "작업물 펼쳐보기" : "업무 내용 펼쳐보기";
+      companyGroup.appendChild(kind);
+
+      const title = document.createElement("div");
+      title.className = "fold-title";
+      const heading = document.createElement("h3");
+      heading.textContent = info.querySelector("h3")?.textContent || "대표 작업";
+      title.appendChild(heading);
+
+      const toggle = document.createElement("span");
+      toggle.className = "fold-toggle";
+      toggle.setAttribute("aria-hidden", "true");
+      summary.append(companyGroup, title, toggle);
+
+      const body = document.createElement("div");
+      body.className = "portfolio-fold-body";
+      const copy = document.createElement("p");
+      copy.className = "fold-description";
+      copy.textContent = info.querySelector("p")?.textContent || "";
+      body.appendChild(copy);
+      if (gallery) body.appendChild(gallery);
+      fold.append(summary, body);
+      card.replaceWith(fold);
+    });
+
+    document.querySelectorAll(".series-images").forEach((slider, sliderIndex) => {
+      const slides = Array.from(slider.querySelectorAll(":scope > .series-image"));
+      if (!slides.length) return;
+
+      const groupTitle = slider.closest(".series-group")?.querySelector(".series-head strong")?.textContent?.trim() || `작업물 ${sliderIndex + 1}`;
+      let current = 0;
+      slider.classList.add("slider-ready");
+      slider.setAttribute("role", "region");
+      slider.setAttribute("aria-roledescription", "carousel");
+      slider.setAttribute("aria-label", `${groupTitle} 이미지 슬라이드`);
+
+      const updateSlides = nextIndex => {
+        current = (nextIndex + slides.length) % slides.length;
+        slides.forEach((slide, index) => {
+          const active = index === current;
+          slide.classList.toggle("is-active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+          slide.tabIndex = active ? 0 : -1;
+        });
+        slider.querySelectorAll(".slider-dot").forEach((dot, index) => {
+          const active = index === current;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-current", active ? "true" : "false");
+        });
+        const currentLabel = slider.querySelector(".slider-current");
+        if (currentLabel) currentLabel.textContent = String(current + 1).padStart(2, "0");
+      };
+
+      slides.forEach((slide, index) => {
+        slide.setAttribute("role", "group");
+        slide.setAttribute("aria-roledescription", "slide");
+        slide.setAttribute("aria-label", `${index + 1} / ${slides.length}`);
+      });
+
+      if (slides.length === 1) {
+        slider.classList.add("slider-single");
+        updateSlides(0);
+        return;
+      }
+
+      const previous = document.createElement("button");
+      previous.type = "button";
+      previous.className = "slider-control slider-prev";
+      previous.setAttribute("aria-label", "이전 이미지");
+      previous.textContent = "←";
+
+      const next = document.createElement("button");
+      next.type = "button";
+      next.className = "slider-control slider-next";
+      next.setAttribute("aria-label", "다음 이미지");
+      next.textContent = "→";
+
+      const dots = document.createElement("div");
+      dots.className = "slider-dots";
+      dots.setAttribute("aria-label", "이미지 선택");
+      slides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "slider-dot";
+        dot.setAttribute("aria-label", `${index + 1}번째 이미지 보기`);
+        dot.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          updateSlides(index);
+        });
+        dots.appendChild(dot);
+      });
+
+      const meta = document.createElement("div");
+      meta.className = "slider-meta";
+      meta.setAttribute("aria-live", "polite");
+      meta.innerHTML = `<span class="slider-current">01</span><span>/</span><span>${String(slides.length).padStart(2, "0")}</span>`;
+
+      previous.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        updateSlides(current - 1);
+      });
+      next.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        updateSlides(current + 1);
+      });
+      slider.addEventListener("keydown", event => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          updateSlides(current - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          updateSlides(current + 1);
+        }
+      });
+
+      let touchStartX = null;
+      slider.addEventListener("touchstart", event => {
+        touchStartX = event.changedTouches[0]?.clientX ?? null;
+      }, { passive: true });
+      slider.addEventListener("touchend", event => {
+        if (touchStartX === null) return;
+        const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
+        const distance = touchEndX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(distance) < 42) return;
+        updateSlides(distance > 0 ? current - 1 : current + 1);
+      }, { passive: true });
+
+      slider.append(previous, next, dots, meta);
+      updateSlides(0);
+    });
+
+    document.querySelectorAll(".document-card").forEach(card => {
+      const fold = document.createElement("details");
+      fold.className = "document-fold";
+      const summary = document.createElement("summary");
+      const label = document.createElement("span");
+      label.textContent = card.querySelector("span")?.textContent || "DOCUMENT";
+      const heading = document.createElement("h3");
+      heading.textContent = card.querySelector("h3")?.textContent || "문서관리";
+      summary.append(label, heading);
+      const body = document.createElement("div");
+      body.className = "document-fold-body";
+      const copy = document.createElement("p");
+      copy.textContent = card.querySelector("p")?.textContent || "";
+      body.appendChild(copy);
+      fold.append(summary, body);
+      card.replaceWith(fold);
+    });
+
+    document.querySelectorAll(".project-grid").forEach(grid => {
+      const folds = Array.from(grid.querySelectorAll(":scope > .portfolio-fold"));
+      folds.forEach(fold => fold.addEventListener("toggle", () => {
+        if (fold.open) folds.forEach(item => { if (item !== fold) item.open = false; });
+      }));
+    });
+
+    document.querySelectorAll(".document-grid").forEach(grid => {
+      const folds = Array.from(grid.querySelectorAll(":scope > .document-fold"));
+      folds.forEach(fold => fold.addEventListener("toggle", () => {
+        if (fold.open) folds.forEach(item => { if (item !== fold) item.open = false; });
+      }));
+    });
+
+    const sections = Array.from(document.querySelectorAll("[data-section]"));
+    const accordions = Array.from(document.querySelectorAll(".work-accordion"));
+
+    function activateWork(id, shouldScroll = false) {
+      if (!workSectionIds.has(id)) return;
+      workSections.forEach(section => {
+        const active = section.id === id;
+        section.classList.toggle("work-active", active);
+        section.hidden = !active;
+        const accordion = section.querySelector(".work-accordion");
+        if (accordion) accordion.open = active;
+        if (active) section.querySelectorAll(".reveal").forEach(item => item.classList.add("visible"));
+      });
+      workTabs.forEach(tab => {
+        const active = tab.dataset.workTarget === id;
+        tab.classList.toggle("active", active);
+        tab.setAttribute("aria-selected", String(active));
+      });
+      navLinks.forEach(link => link.classList.toggle("active", link.dataset.nav === id));
+      workTrigger.classList.add("active");
+      if (shouldScroll && workIndex) {
+        workIndex.scrollIntoView({ block: "start" });
+        window.history.replaceState(null, "", `#${id}`);
+      }
+    }
+
+    function scrollToTarget(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.scrollIntoView({ block: "start" });
+      window.history.replaceState(null, "", `#${id}`);
+    }
+
+    function closeMenu() {
+      topbar.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "메뉴 열기");
+      workMenu.classList.remove("open");
+      workTrigger.setAttribute("aria-expanded", "false");
+    }
+
+    navToggle.addEventListener("click", () => {
+      const open = !topbar.classList.contains("open");
+      topbar.classList.toggle("open", open);
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+    });
+
+    workTrigger.addEventListener("click", () => {
+      const open = !workMenu.classList.contains("open");
+      workMenu.classList.toggle("open", open);
+      workTrigger.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.forEach(link => link.addEventListener("click", event => {
+      event.preventDefault();
+      if (workSectionIds.has(link.dataset.nav)) {
+        activateWork(link.dataset.nav, true);
+      } else {
+        scrollToTarget(link.dataset.nav);
+      }
+      closeMenu();
+    }));
+
+    document.querySelectorAll('a[href^="#"]:not([data-nav])').forEach(link => {
+      link.addEventListener("click", event => {
+        const id = link.getAttribute("href")?.slice(1);
+        if (!id || !document.getElementById(id)) return;
+        event.preventDefault();
+        scrollToTarget(id);
+        closeMenu();
+      });
+    });
+
+    workTabs.forEach(tab => tab.addEventListener("click", () => {
+      activateWork(tab.dataset.workTarget);
+      if (window.innerWidth <= 980) {
+        tab.scrollIntoView({ block: "nearest", inline: "center" });
+      }
+    }));
+
+    const initialWork = workSectionIds.has(location.hash.slice(1)) ? location.hash.slice(1) : "ir";
+    activateWork(initialWork);
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      navLinks.forEach(link => link.classList.toggle("active", link.dataset.nav === visible.target.id));
+      workTrigger.classList.toggle("active", workSectionIds.has(visible.target.id));
+    }, { rootMargin: "-20% 0px -65%", threshold: [0.05, 0.2] });
+    sections.forEach(section => sectionObserver.observe(section));
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(item => revealObserver.observe(item));
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    document.addEventListener("click", event => {
+      if (!workMenu.contains(event.target)) {
+        workMenu.classList.remove("open");
+        workTrigger.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
+</body>
+</html>
